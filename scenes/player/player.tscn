@@ -4,13 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkch"]
-radius = 63.0
-height = 126.0
+radius = 16.0
+height = 32.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 513
 script = ExtResource("1_dovo2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

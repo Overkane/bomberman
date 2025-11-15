@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpo5y5pvhbibe"]
+
+[ext_resource type="Script" uid="uid://12cc0ycbt14g" path="res://scenes/bomb/bomb.gd" id="1_rqjch"]
+[ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="2_eax2s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_76ftv"]
+radius = 15.0
+height = 32.0
+
+[node name="Bomb" type="CharacterBody2D"]
+collision_layer = 1540
+collision_mask = 3
+script = ExtResource("1_rqjch")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.8378587, 0.32582688, 0.40961698, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_eax2s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_76ftv")
+
+[node name="BombArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BombArea"]
+shape = SubResource("CapsuleShape2D_76ftv")
+
+[node name="FuseTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 4.0
+one_shot = true
+autostart = true
