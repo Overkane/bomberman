@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Bomberman"
 config/tags=PackedStringArray("2d", "game", "game_jam")
+run/main_scene="uid://bst1tonp0snoa"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
