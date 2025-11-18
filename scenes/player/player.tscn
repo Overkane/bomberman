@@ -9,7 +9,7 @@ height = 32.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 6
-collision_mask = 513
+collision_mask = 16897
 script = ExtResource("1_dovo2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

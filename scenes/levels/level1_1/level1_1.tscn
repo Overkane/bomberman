@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bst1tonp0snoa"]
+[gd_scene load_steps=3 format=3 uid="uid://bst1tonp0snoa"]
 
 [ext_resource type="PackedScene" uid="uid://ckogy8ldbtbum" path="res://scenes/player/player.tscn" id="1_uf52y"]
+[ext_resource type="PackedScene" uid="uid://wcn0q7u74g13" path="res://scenes/destructible_box/destructible_box.tscn" id="2_2qwhw"]
 
 [node name="Level11" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_uf52y")]
 position = Vector2(555, 223)
+
+[node name="DestructibleBox" parent="." instance=ExtResource("2_2qwhw")]
+position = Vector2(383, 131)
+
+[node name="DestructibleBox2" parent="." instance=ExtResource("2_2qwhw")]
+position = Vector2(159, 177)
+
+[node name="DestructibleBox3" parent="." instance=ExtResource("2_2qwhw")]
+position = Vector2(216, 139)
+
+[node name="DestructibleBox4" parent="." instance=ExtResource("2_2qwhw")]
+position = Vector2(215, 221)
