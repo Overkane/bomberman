@@ -9,7 +9,8 @@ height = 24.0
 
 [node name="BombExplosion" type="Area2D"]
 collision_layer = 0
-collision_mask = 7
+collision_mask = 4
+monitorable = false
 script = ExtResource("1_k8new")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

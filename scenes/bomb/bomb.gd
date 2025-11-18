@@ -3,6 +3,10 @@ extends CharacterBody2D
 
 const BOMB_EXPLOSION := preload("uid://ch58jhxoq461i")
 
+# To prevent multiple explosions from one bomb during one physics frame,
+# cuz bomb disappear only in next frame cuz of call_deferred.
+var is_exploded := false
+
 @onready var fuse_timer: Timer = $FuseTimer
 @onready var bomb_area: Area2D = $BombArea
 
@@ -13,6 +17,12 @@ func _ready() -> void:
 
 	# Initially allow the player to move away from the bomb
 	_set_bomb_collision_for_player(false)
+
+
+func explode() -> void:
+	if not is_exploded:
+		is_exploded = true
+		_on_fuse_timeout.call_deferred()
 
 
 func _spawn_crest_explosion(radius: int) -> void:

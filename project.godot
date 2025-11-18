@@ -55,6 +55,7 @@ place_bomb={
 
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
+2d_physics/layer_3="explodable"
 2d_physics/layer_10="bomb_for_player"
 2d_physics/layer_11="bomb_for_enemies"
 

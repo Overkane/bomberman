@@ -6,7 +6,12 @@ extends Area2D
 
 func _ready() -> void:
 	explosion_lifetime_timer.timeout.connect(_on_explosion_lifetime_timeout)
+	body_entered.connect(_on_body_entered)
 
+
+func _on_body_entered(body: Node) -> void:
+	assert(body.has_method("explode"), "Body does not have an explode() method")
+	body.explode()
 
 func _on_explosion_lifetime_timeout() -> void:
 	queue_free()

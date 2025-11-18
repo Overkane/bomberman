@@ -15,3 +15,7 @@ func _input(event) -> void:
 		var bomb: Bomb = BOMB_SCENE.instantiate()
 		bomb.global_position = global_position
 		get_tree().root.add_child(bomb)
+
+
+func explode() -> void:
+	queue_free()
