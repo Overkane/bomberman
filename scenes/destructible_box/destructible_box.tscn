@@ -9,7 +9,7 @@ height = 32.0
 
 [node name="DestructibleBox" type="CharacterBody2D"]
 collision_layer = 49164
-collision_mask = 2
+collision_mask = 18
 script = ExtResource("1_ky4wp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

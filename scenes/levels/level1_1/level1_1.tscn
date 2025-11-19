@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://bst1tonp0snoa"]
+[gd_scene load_steps=7 format=4 uid="uid://bst1tonp0snoa"]
 
 [ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="1_lfnj2"]
 [ext_resource type="PackedScene" uid="uid://ckogy8ldbtbum" path="res://scenes/player/player.tscn" id="1_uf52y"]
 [ext_resource type="PackedScene" uid="uid://wcn0q7u74g13" path="res://scenes/destructible_box/destructible_box.tscn" id="2_2qwhw"]
+[ext_resource type="PackedScene" uid="uid://42rwl8dniftt" path="res://scenes/enemies/fool/fool.tscn" id="4_3wyua"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3wyua"]
 texture = ExtResource("1_lfnj2")
@@ -77,7 +78,7 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_8kgdu"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 2
+physics_layer_0/collision_mask = 18
 sources/0 = SubResource("TileSetAtlasSource_3wyua")
 
 [node name="Level11" type="Node2D"]
@@ -103,3 +104,6 @@ position = Vector2(111, 49)
 
 [node name="DestructibleBox4" parent="." instance=ExtResource("2_2qwhw")]
 position = Vector2(113, 175)
+
+[node name="Fool" parent="." instance=ExtResource("4_3wyua")]
+position = Vector2(176, 175)

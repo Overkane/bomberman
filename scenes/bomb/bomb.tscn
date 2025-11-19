@@ -9,7 +9,7 @@ height = 32.0
 
 [node name="Bomb" type="CharacterBody2D"]
 collision_layer = 1540
-collision_mask = 3
+collision_mask = 19
 script = ExtResource("1_rqjch")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
