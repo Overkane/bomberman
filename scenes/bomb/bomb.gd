@@ -33,7 +33,31 @@ func _spawn_crest_explosion(radius: int) -> void:
 	var directions: Array = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
 	for direction in directions:
 		for i in range(1, radius + 1):
-			_spawn_explosion_at_offset(direction * i * Globals.TILE_SIZE)
+			var offset = direction * i * Globals.TILE_SIZE
+
+			# Check for walls, can't explode them and can't go through them.
+			var query_for_explodable = PhysicsPointQueryParameters2D.new()
+			query_for_explodable.collide_with_areas = false
+			query_for_explodable.collide_with_bodies = true
+			query_for_explodable.position = global_position + offset
+			query_for_explodable.collision_mask = pow(2, Globals.CollisionLayer.WORLD - 1)
+
+			var result_for_explodable = get_world_2d().direct_space_state.intersect_point(query_for_explodable)
+			if result_for_explodable.size() > 0:
+				break
+
+			_spawn_explosion_at_offset(offset)
+
+			# Check if explosion can go through the object.
+			var query_for_not_explosion_penetrable = PhysicsPointQueryParameters2D.new()
+			query_for_not_explosion_penetrable.collide_with_areas = false
+			query_for_not_explosion_penetrable.collide_with_bodies = true
+			query_for_not_explosion_penetrable.position = global_position + offset
+			query_for_not_explosion_penetrable.collision_mask = pow(2, Globals.CollisionLayer.NOT_EXPLOSION_PENETRABLE - 1)
+
+			var result_for_non_explosion_penetrable = get_world_2d().direct_space_state.intersect_point(query_for_not_explosion_penetrable)
+			if result_for_non_explosion_penetrable.size() > 0:
+				break
 
 func _spawn_explosion_at_offset(offset: Vector2) -> void:
 	var explosion: BombExplosion = BOMB_EXPLOSION.instantiate()
