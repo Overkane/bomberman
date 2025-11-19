@@ -1,13 +1,13 @@
 class_name Player
 extends CharacterBody2D
 
-const BASESPEED := 300.0
+const BASE_SPEED := 150.0
 const BOMB_SCENE := preload("uid://bpo5y5pvhbibe")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * BASESPEED
+	velocity = direction * BASE_SPEED
 	move_and_slide()
 
 func _input(event) -> void:

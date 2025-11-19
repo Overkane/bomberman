@@ -22,5 +22,6 @@ texture = ExtResource("1_1oi0a")
 shape = SubResource("CapsuleShape2D_k8new")
 
 [node name="ExplosionLifetimeTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 autostart = true
