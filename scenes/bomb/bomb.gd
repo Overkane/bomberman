@@ -1,6 +1,8 @@
 class_name Bomb
 extends CharacterBody2D
 
+signal exploded
+
 const BOMB_EXPLOSION := preload("uid://ch58jhxoq461i")
 
 # To prevent multiple explosions from one bomb during one physics frame,
@@ -22,7 +24,9 @@ func _ready() -> void:
 func explode() -> void:
 	if not is_exploded:
 		is_exploded = true
-		_on_fuse_timeout.call_deferred()
+		exploded.emit()
+		_spawn_crest_explosion(2)
+		queue_free()
 
 
 func _spawn_crest_explosion(radius: int) -> void:
@@ -75,5 +79,4 @@ func _on_bomb_area_body_exited(body: Node) -> void:
 		_set_bomb_collision_for_player(true)
 
 func _on_fuse_timeout() -> void:
-	_spawn_crest_explosion(2)
-	queue_free()
+	explode()

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dri4l3tofa24c"]
+
+[ext_resource type="Script" uid="uid://v7ywnkr1wegc" path="res://scenes/bonus_pickup.gd" id="1_1d5qg"]
+[ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="2_tj3im"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjraq"]
+size = Vector2(18, 18)
+
+[node name="BonusPickup" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_1d5qg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.608, 0.16000003, 1, 1)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_tj3im")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tjraq")

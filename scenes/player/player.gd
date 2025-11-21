@@ -2,7 +2,14 @@ class_name Player
 extends CharacterBody2D
 
 const BASE_SPEED := 150.0
+const BASE_MAX_BOMBS := 1
 const BOMB_SCENE := preload("uid://bpo5y5pvhbibe")
+
+
+var _max_bombs: int:
+	get():
+		return BASE_MAX_BOMBS + BonusHandler.get_bonus(self, BonusHandler.BonusType.BOMB_COUNT)
+var _current_bombs: int = 0
 
 
 func _physics_process(_delta: float) -> void:
@@ -11,8 +18,11 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _input(event) -> void:
-	if event.is_action_pressed(&"place_bomb"):
+	if event.is_action_pressed(&"place_bomb") and _current_bombs < _max_bombs:
+		_current_bombs += 1
+		# TODO can't place several bombs in one place
 		var bomb: Bomb = BOMB_SCENE.instantiate()
+		bomb.exploded.connect(func(): _current_bombs -= 1)
 		# Bomb shoulbe be placed only in the center of each tile, which will be the half of tile size.
 		# To exclude position between tiles, need to check if one of coords can be divided by tile size.
 		# If it is, then need to add offset to the closest tile center.
