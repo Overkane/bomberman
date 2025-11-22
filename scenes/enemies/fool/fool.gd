@@ -15,7 +15,7 @@ var direction := Vector2.RIGHT
 
 func _physics_process(delta: float) -> void:
 	velocity = direction * BASE_SPEED
-	var collision_info = move_and_collide(velocity * delta)
+	var collision_info: KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision_info:
 		velocity = direction.rotated(PI / 2) * BASE_SPEED
 		collision_info = move_and_collide(velocity * delta, true, COLLISION_MARGIN)

@@ -7,12 +7,19 @@ const BASE_SPEED := 150.0
 const BASE_MAX_BOMBS := 1
 const BOMB_SCENE := preload("uid://bpo5y5pvhbibe")
 
-
 var _max_bombs: int:
 	get():
 		return BASE_MAX_BOMBS + BonusHandler.get_bonus(self, BonusHandler.BonusType.BOMB_COUNT)
-var _current_bombs: int = 0
+var _current_bombs := 0
+var _amount_of_lives := 3
 
+@onready var enemy_hurtbox: Area2D = %EnemyHurtbox
+
+
+func _ready() -> void:
+	enemy_hurtbox.body_entered.connect(func(_body: Node) -> void:
+		explode()
+	)
 
 func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -40,5 +47,10 @@ func _input(event) -> void:
 
 
 func explode() -> void:
-	exploded.emit()
-	queue_free()
+	if _amount_of_lives > 0:
+		_amount_of_lives -= 1
+	elif _amount_of_lives == 0:
+		exploded.emit()
+		queue_free()
+	elif _amount_of_lives < 0:
+		assert(false, "Player lives amount cannot be less than 0.")
