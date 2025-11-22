@@ -37,8 +37,8 @@ func _ready() -> void:
 			if drop_table_item is BonusPickupsBase:
 				var bonus_pickup: BonusPickup = BONUS_PICKUP_SCENE.instantiate()
 				bonus_pickup.global_position = destructible_box.global_position
-				bonus_pickup.icon = bonus_pickup.icon
-				bonus_pickup.bonus_type = bonus_pickup.bonus_type
+				bonus_pickup.icon = drop_table_item.icon
+				bonus_pickup.bonus_type = drop_table_item.bonus_type
 				add_child(bonus_pickup)
 			elif drop_table_item is PackedScene:
 				var level_object: Variant = drop_table_item.instantiate()
