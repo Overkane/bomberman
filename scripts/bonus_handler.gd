@@ -47,6 +47,12 @@ static func get_bonus(entity: Node, bonus_type: BonusType) -> Variant:
 
 	return null
 
+static func clear_temporary_bonuses() -> void:
+	for entity in _bonus_map.keys():
+		_bonus_map[entity] = _bonus_map[entity].filter(func(bonus: Bonus) -> bool:
+			return bonus.is_permanent
+		)
+
 
 class Bonus:
 	var type: BonusType

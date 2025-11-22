@@ -43,6 +43,7 @@ func _load_next_level() -> void:
 		add_child.call_deferred(player)
 
 		next_level.level_finished.connect(func():
+			BonusHandler.clear_temporary_bonuses()
 			next_level.queue_free()
 			remove_child(player)
 			_load_next_level()
