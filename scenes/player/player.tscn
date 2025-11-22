@@ -26,3 +26,8 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
 shape = SubResource("CapsuleShape2D_dqkch")
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+one_shot = true

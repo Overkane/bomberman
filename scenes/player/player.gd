@@ -6,19 +6,28 @@ signal exploded
 const BASE_SPEED := 150.0
 const BASE_MAX_BOMBS := 1
 const BOMB_SCENE := preload("uid://bpo5y5pvhbibe")
+const INVULNERABILITY_TIME := 1.5
 
 var _max_bombs: int:
 	get():
 		return BASE_MAX_BOMBS + BonusHandler.get_bonus(self, BonusHandler.BonusType.BOMB_COUNT)
 var _current_bombs := 0
 var _amount_of_lives := 3
+var _is_invulnerable := false
 
 @onready var enemy_hurtbox: Area2D = %EnemyHurtbox
+@onready var invulnerability_timer: Timer = %InvulnerabilityTimer
 
 
 func _ready() -> void:
 	enemy_hurtbox.body_entered.connect(func(_body: Node) -> void:
 		explode()
+	)
+	invulnerability_timer.timeout.connect(func() -> void:
+		_is_invulnerable = false
+		# If still inside the enemy during invulnerability, explode again.
+		if enemy_hurtbox.has_overlapping_bodies():
+			explode()
 	)
 
 func _physics_process(_delta: float) -> void:
@@ -47,10 +56,14 @@ func _input(event) -> void:
 
 
 func explode() -> void:
+	if _is_invulnerable:
+		return
+
 	if _amount_of_lives > 0:
 		_amount_of_lives -= 1
-	elif _amount_of_lives == 0:
-		exploded.emit()
-		queue_free()
-	elif _amount_of_lives < 0:
-		assert(false, "Player lives amount cannot be less than 0.")
+		if _amount_of_lives == 0:
+			exploded.emit()
+			queue_free()
+		else:
+			_is_invulnerable = true
+			invulnerability_timer.start(INVULNERABILITY_TIME)
