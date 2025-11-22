@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal exploded
+
 const BASE_SPEED := 150.0
 const BASE_MAX_BOMBS := 1
 const BOMB_SCENE := preload("uid://bpo5y5pvhbibe")
@@ -38,4 +40,5 @@ func _input(event) -> void:
 
 
 func explode() -> void:
+	exploded.emit()
 	queue_free()

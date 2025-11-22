@@ -3,6 +3,8 @@
 class_name Fool
 extends CharacterBody2D
 
+signal exploded
+
 const BASE_SPEED := 100.0
 # Since enemy collision shape a bit smaller, than distance between tiles, add additional
 # margin, so enemy doesn't rotate into the wall right next to it to move for a bit.
@@ -29,4 +31,5 @@ func _physics_process(delta: float) -> void:
 
 
 func explode() -> void:
+	exploded.emit()
 	queue_free()

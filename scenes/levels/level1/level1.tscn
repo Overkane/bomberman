@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://bst1tonp0snoa"]
+[gd_scene load_steps=8 format=4 uid="uid://bst1tonp0snoa"]
 
-[ext_resource type="Script" uid="uid://bolf81s5tn47n" path="res://scenes/levels/level1_1/level_1_1.gd" id="1_8kgdu"]
+[ext_resource type="Script" uid="uid://bolf81s5tn47n" path="res://scenes/levels/level1/level1.gd" id="1_8kgdu"]
 [ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="1_lfnj2"]
-[ext_resource type="PackedScene" uid="uid://ckogy8ldbtbum" path="res://scenes/player/player.tscn" id="1_uf52y"]
 [ext_resource type="PackedScene" uid="uid://wcn0q7u74g13" path="res://scenes/destructible_box/destructible_box.tscn" id="2_2qwhw"]
-[ext_resource type="Script" uid="uid://d35sigrsgdcd7" path="res://resources/bonus_pickups/bonus_pickup_base.gd" id="2_07hgr"]
 [ext_resource type="Resource" uid="uid://b3hpj6e4snkey" path="res://resources/bonus_pickups/max_bombs.tres" id="3_nnx1k"]
 [ext_resource type="PackedScene" uid="uid://42rwl8dniftt" path="res://scenes/enemies/fool/fool.tscn" id="4_3wyua"]
 
@@ -84,16 +82,14 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 18
 sources/0 = SubResource("TileSetAtlasSource_3wyua")
 
-[node name="Level11" type="Node2D"]
+[node name="Level1" type="Node2D" node_paths=PackedStringArray("_player_spawn_point")]
 script = ExtResource("1_8kgdu")
-drop_table = Array[ExtResource("2_07hgr")]([ExtResource("3_nnx1k"), ExtResource("3_nnx1k")])
+drop_table = [ExtResource("3_nnx1k"), ExtResource("3_nnx1k")]
+_player_spawn_point = NodePath("PlayerPosition")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAAABAAAAAAAAAAMAAAACAAAAAAAAAAMAAAADAAAAAAAAAAMAAAAEAAAAAAAAAAMAAAAFAAAAAAAAAAMAAAAAAAEAAAAAAAMAAAAAAAIAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAQAAAAAAAMAAAAAAAUAAAAAAAMAAAACAAIAAAAAAAMAAAAEAAIAAAAAAAMAAAACAAQAAAAAAAMAAAAEAAQAAAAAAAMAAAAAAAYAAAAAAAMAAAABAAYAAAAAAAMAAAACAAYAAAAAAAMAAAADAAYAAAAAAAMAAAAEAAYAAAAAAAMAAAAFAAYAAAAAAAMAAAAGAAYAAAAAAAMAAAAGAAUAAAAAAAMAAAAGAAQAAAAAAAMAAAAGAAMAAAAAAAMAAAAGAAIAAAAAAAMAAAAGAAEAAAAAAAMAAAAGAAAAAAAAAAMAAAA=")
 tile_set = SubResource("TileSet_8kgdu")
-
-[node name="Player" parent="." instance=ExtResource("1_uf52y")]
-position = Vector2(49, 48)
 
 [node name="DestructibleBox" parent="." instance=ExtResource("2_2qwhw")]
 position = Vector2(112, 112)
@@ -112,3 +108,7 @@ position = Vector2(113, 175)
 
 [node name="Fool" parent="." instance=ExtResource("4_3wyua")]
 position = Vector2(176, 175)
+
+[node name="PlayerPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(49, 48)
