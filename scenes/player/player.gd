@@ -3,48 +3,52 @@ extends CharacterBody2D
 
 signal exploded
 
-const BASE_SPEED := 150.0
-const BASE_MAX_BOMBS := 1
-const BOMB_SCENE := preload("uid://bpo5y5pvhbibe")
-const INVULNERABILITY_TIME := 1.5
+const _BASE_SPEED := 150.0
+const _BASE_MAX_BOMBS := 1
+const _BASE_BOMB_POWER := 1
+const _BOMB_SCENE := preload("uid://bpo5y5pvhbibe")
+const _INVULNERABILITY_TIME := 1.5
 
 var _max_bombs: int:
 	get():
-		return BASE_MAX_BOMBS + BonusHandler.get_bonus(self, BonusHandler.BonusType.BOMB_COUNT)
+		return _BASE_MAX_BOMBS + BonusHandler.get_bonus(self, BonusHandler.BonusType.BOMB_COUNT)
 var _current_bombs := 0
+var _bomb_power: int:
+	get():
+		return _BASE_BOMB_POWER + BonusHandler.get_bonus(self, BonusHandler.BonusType.BOMB_POWER)
 var _amount_of_lives := 3
 var _is_invulnerable := false
 
-@onready var enemy_hurtbox: Area2D = %EnemyHurtbox
-@onready var invulnerability_timer: Timer = %InvulnerabilityTimer
-@onready var bomb_placement_checker: Area2D = %BombPlacementChecker
+@onready var _enemy_hurtbox: Area2D = %EnemyHurtbox
+@onready var _invulnerability_timer: Timer = %InvulnerabilityTimer
+@onready var _bomb_placement_checker: Area2D = %BombPlacementChecker
 
 
 func _ready() -> void:
-	enemy_hurtbox.body_entered.connect(func(_body: Node) -> void:
+	_enemy_hurtbox.body_entered.connect(func(_body: Node) -> void:
 		explode()
 	)
-	invulnerability_timer.timeout.connect(func() -> void:
+	_invulnerability_timer.timeout.connect(func() -> void:
 		_is_invulnerable = false
 		# If still inside the enemy during invulnerability, explode again.
-		if enemy_hurtbox.has_overlapping_bodies():
+		if _enemy_hurtbox.has_overlapping_bodies():
 			explode()
 	)
 
 func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * BASE_SPEED
+	velocity = direction * _BASE_SPEED
 
 	move_and_slide()
 
 func _input(event) -> void:
 	if event.is_action_pressed(&"place_bomb") \
-		and bomb_placement_checker.get_overlapping_bodies().size() == 0 \
+		and _bomb_placement_checker.get_overlapping_bodies().size() == 0 \
 		and _current_bombs < _max_bombs:
-
 		_current_bombs += 1
 		# TODO can't place several bombs in one place
-		var bomb: Bomb = BOMB_SCENE.instantiate()
+		var bomb: Bomb = _BOMB_SCENE.instantiate()
+		bomb.init(_bomb_power)
 		bomb.exploded.connect(func(): _current_bombs -= 1)
 		# Bomb shoulbe be placed only in the center of each tile, which will be the half of tile size.
 		# To exclude position between tiles, need to check if one of coords can be divided by tile size.
@@ -71,4 +75,4 @@ func explode() -> void:
 			queue_free()
 		else:
 			_is_invulnerable = true
-			invulnerability_timer.start(INVULNERABILITY_TIME)
+			_invulnerability_timer.start(_INVULNERABILITY_TIME)

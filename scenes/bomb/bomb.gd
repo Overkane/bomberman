@@ -3,29 +3,33 @@ extends CharacterBody2D
 
 signal exploded
 
-const BOMB_EXPLOSION := preload("uid://ch58jhxoq461i")
+const _BOMB_EXPLOSION := preload("uid://ch58jhxoq461i")
 
 # To prevent multiple explosions from one bomb during one physics frame,
 # cuz bomb disappear only in next frame cuz of call_deferred.
-var is_exploded := false
+var _is_exploded := false
+var _bomb_power := 1
 
-@onready var fuse_timer: Timer = $FuseTimer
-@onready var bomb_area: Area2D = $BombArea
+@onready var _fuse_timer: Timer = $FuseTimer
+@onready var _bomb_area: Area2D = $BombArea
 
 
 func _ready() -> void:
-	bomb_area.body_exited.connect(_on_bomb_area_body_exited)
-	fuse_timer.timeout.connect(_on_fuse_timeout)
+	_bomb_area.body_exited.connect(_on_bomb_area_body_exited)
+	_fuse_timer.timeout.connect(_on_fuse_timeout)
 
 	# Initially allow the player to move away from the bomb
 	_set_bomb_collision_for_player(false)
 
 
+func init(bomb_power: int) -> void:
+	_bomb_power = bomb_power
+
 func explode() -> void:
-	if not is_exploded:
-		is_exploded = true
+	if not _is_exploded:
+		_is_exploded = true
 		exploded.emit()
-		_spawn_crest_explosion(2)
+		_spawn_crest_explosion(_bomb_power)
 		queue_free()
 
 
@@ -64,7 +68,7 @@ func _spawn_crest_explosion(radius: int) -> void:
 				break
 
 func _spawn_explosion_at_offset(offset: Vector2) -> void:
-	var explosion: BombExplosion = BOMB_EXPLOSION.instantiate()
+	var explosion: BombExplosion = _BOMB_EXPLOSION.instantiate()
 	explosion.global_position = global_position + offset
 	get_tree().root.add_child(explosion)
 

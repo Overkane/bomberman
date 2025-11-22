@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BonusPickupsBase" load_steps=3 format=3 uid="uid://dsfpxdabmgj2j"]
+
+[ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="1_vobpp"]
+[ext_resource type="Script" uid="uid://d35sigrsgdcd7" path="res://resources/bonus_pickups/bonus_pickup_base.gd" id="2_t01vt"]
+
+[resource]
+script = ExtResource("2_t01vt")
+icon = ExtResource("1_vobpp")
+bonus_type = 2
+metadata/_custom_type_script = "uid://d35sigrsgdcd7"

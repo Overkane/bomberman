@@ -2,17 +2,19 @@ class_name BonusHandler
 extends Node
 
 enum BonusType {
-	BOMB_COUNT,
+	BOMB_COUNT = 1,
+	BOMB_POWER = 2,
 }
 
 enum BonusCalculationType {
-	NONE,
-	ADDITIVE,
+	NONE = 1,
+	ADDITIVE = 2,
 }
 
 static var _bonus_map: Dictionary[Node, Array] = {}
 static var _bonus_calculation_type: Dictionary[BonusType, BonusCalculationType] = {
 	BonusType.BOMB_COUNT: BonusCalculationType.ADDITIVE,
+	BonusType.BOMB_POWER: BonusCalculationType.ADDITIVE,
 }
 
 
