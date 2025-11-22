@@ -17,6 +17,7 @@ var _is_invulnerable := false
 
 @onready var enemy_hurtbox: Area2D = %EnemyHurtbox
 @onready var invulnerability_timer: Timer = %InvulnerabilityTimer
+@onready var bomb_placement_checker: Area2D = %BombPlacementChecker
 
 
 func _ready() -> void:
@@ -33,10 +34,14 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * BASE_SPEED
+
 	move_and_slide()
 
 func _input(event) -> void:
-	if event.is_action_pressed(&"place_bomb") and _current_bombs < _max_bombs:
+	if event.is_action_pressed(&"place_bomb") \
+		and bomb_placement_checker.get_overlapping_bodies().size() == 0 \
+		and _current_bombs < _max_bombs:
+
 		_current_bombs += 1
 		# TODO can't place several bombs in one place
 		var bomb: Bomb = BOMB_SCENE.instantiate()

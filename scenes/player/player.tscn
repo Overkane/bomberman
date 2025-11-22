@@ -27,6 +27,15 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
 shape = SubResource("CapsuleShape2D_dqkch")
 
+[node name="BombPlacementChecker" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 50705
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BombPlacementChecker"]
+shape = SubResource("CapsuleShape2D_dqkch")
+
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 process_callback = 0
