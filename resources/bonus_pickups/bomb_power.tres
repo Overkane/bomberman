@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("2_t01vt")
 icon = ExtResource("1_vobpp")
+description = "+1 to bomb explosion range"
 bonus_type = 2
 metadata/_custom_type_script = "uid://d35sigrsgdcd7"
