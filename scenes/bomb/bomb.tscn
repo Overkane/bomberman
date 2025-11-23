@@ -281,6 +281,7 @@ autoplay = "birth"
 offset = Vector2(4, -9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_76ftv")
 
 [node name="BombArea" type="Area2D" parent="."]
@@ -289,6 +290,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BombArea"]
+visible = false
 shape = SubResource("CapsuleShape2D_76ftv")
 
 [node name="FuseTimer" type="Timer" parent="."]

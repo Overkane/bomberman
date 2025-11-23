@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bna7qyy6d8r7g"]
+[gd_scene load_steps=5 format=3 uid="uid://bna7qyy6d8r7g"]
 
 [ext_resource type="Script" uid="uid://cujrcg5vtlp71" path="res://ui/permanent_bonus_chooser/permanent_bonus_chooser.gd" id="1_37fwu"]
+[ext_resource type="PackedScene" uid="uid://ctvae00raux8m" path="res://ui/permanent_bonus_chooser/permanent_bonus_card/permanent_bonus_card.tscn" id="2_5m4hw"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_8nrpd"]
+device = -1
+keycode = 74
+unicode = 106
+
+[sub_resource type="Shortcut" id="Shortcut_q4yqk"]
+events = [SubResource("InputEventKey_8nrpd")]
 
 [node name="PermanentBonusChooser" type="Control"]
 layout_mode = 3
@@ -26,10 +35,52 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Select Permanent Bonus"
 horizontal_alignment = 1
 
-[node name="BonusCardContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BonusCardContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
+
+[node name="PermanentBonusCard" parent="CenterContainer/VBoxContainer/HBoxContainer/BonusCardContainer" instance=ExtResource("2_5m4hw")]
+layout_mode = 2
+
+[node name="PermanentBonusCard2" parent="CenterContainer/VBoxContainer/HBoxContainer/BonusCardContainer" instance=ExtResource("2_5m4hw")]
+layout_mode = 2
+
+[node name="PermanentBonusCard3" parent="CenterContainer/VBoxContainer/HBoxContainer/BonusCardContainer" instance=ExtResource("2_5m4hw")]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "D"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+shortcut = SubResource("Shortcut_q4yqk")
+text = "Confirm (J)"

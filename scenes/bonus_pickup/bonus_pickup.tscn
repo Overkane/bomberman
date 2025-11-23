@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dri4l3tofa24c"]
 
-[ext_resource type="Script" uid="uid://v7ywnkr1wegc" path="res://scenes/bonus_pickup.gd" id="1_1d5qg"]
+[ext_resource type="Script" uid="uid://v7ywnkr1wegc" path="res://scenes/bonus_pickup/bonus_pickup.gd" id="1_1d5qg"]
 [ext_resource type="Texture2D" uid="uid://b8kqy8ie7dqi1" path="res://assets/sprites/chest.png" id="2_1d5qg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tjraq"]

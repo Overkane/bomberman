@@ -82,7 +82,7 @@ offset_right = 576.5
 offset_bottom = 319.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play"
+text = "Play (J)"
 
 [node name="Fading" type="CanvasLayer" parent="."]
 layer = 2
