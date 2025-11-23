@@ -1,21 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckogy8ldbtbum"]
+[gd_scene load_steps=5 format=3 uid="uid://ckogy8ldbtbum"]
 
 [ext_resource type="Script" uid="uid://bbrxkqlb58hw7" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="Material" uid="uid://dgb4dtq711es0" path="res://resources/materials/dissolve.tres" id="1_gmlin"]
 [ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkch"]
 radius = 14.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
+material = ExtResource("1_gmlin")
 collision_layer = 6
 collision_mask = 16929
 script = ExtResource("1_dovo2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="EnemyHurtbox" type="Area2D" parent="."]
@@ -25,6 +30,7 @@ collision_mask = 16
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
+visible = false
 shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="BombPlacementChecker" type="Area2D" parent="."]
@@ -34,6 +40,7 @@ collision_mask = 50705
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BombPlacementChecker"]
+visible = false
 shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
