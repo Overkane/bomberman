@@ -41,6 +41,7 @@ func _ready() -> void:
 				var bonus_pickup: BonusPickup = _BONUS_PICKUP_SCENE.instantiate()
 				bonus_pickup.global_position = destructible_box.global_position
 				bonus_pickup.icon = drop_table_item.icon
+				bonus_pickup.description = drop_table_item.description
 				bonus_pickup.bonus_type = drop_table_item.bonus_type
 				add_child(bonus_pickup)
 			elif drop_table_item is PackedScene:
