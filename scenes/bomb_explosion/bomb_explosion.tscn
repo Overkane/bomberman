@@ -1,7 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch58jhxoq461i"]
+[gd_scene load_steps=8 format=3 uid="uid://ch58jhxoq461i"]
 
-[ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="1_1oi0a"]
 [ext_resource type="Script" uid="uid://dopp0uxv1q7xp" path="res://scenes/bomb_explosion/bomb_explosion.gd" id="1_k8new"]
+[ext_resource type="Texture2D" uid="uid://dkep8i73ecofq" path="res://scenes/bomb_explosion/sprites/cloud_fire_0.png" id="2_3k7i3"]
+[ext_resource type="Texture2D" uid="uid://vbrnj56lpvnc" path="res://scenes/bomb_explosion/sprites/cloud_fire_1.png" id="3_jkqmp"]
+[ext_resource type="Texture2D" uid="uid://7sgjm73xn5er" path="res://scenes/bomb_explosion/sprites/cloud_fire_2.png" id="4_d64th"]
+[ext_resource type="Texture2D" uid="uid://b1lieeljluarl" path="res://scenes/bomb_explosion/sprites/cloud_forest_fire.png" id="5_gr2jl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vxr18"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3k7i3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jkqmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d64th")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gr2jl")
+}],
+"loop": false,
+"name": &"birth",
+"speed": 8.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k8new"]
 radius = 12.0
@@ -13,10 +36,13 @@ collision_mask = 4
 monitorable = false
 script = ExtResource("1_k8new")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.060000002, 0.060000002, 1)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_1oi0a")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.85, 0.85)
+sprite_frames = SubResource("SpriteFrames_vxr18")
+animation = &"birth"
+autoplay = "birth"
+frame_progress = 0.8470218
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k8new")
