@@ -4,6 +4,7 @@ extends CharacterBody2D
 signal exploded
 
 const _BASE_SPEED := 150.0
+const _BASE_MAX_LIVES := 3
 const _BASE_MAX_BOMBS := 1
 const _BASE_BOMB_POWER := 1
 const _BOMB_SCENE := preload("uid://bpo5y5pvhbibe")
@@ -16,7 +17,10 @@ var _current_bombs := 0
 var _bomb_power: int:
 	get():
 		return _BASE_BOMB_POWER + BonusHandler.get_bonus(self, BonusHandler.BonusType.BOMB_POWER)
-var _amount_of_lives := 3
+var _lives_wasted := 0
+var _amount_of_lives: int:
+	get():
+		return _BASE_MAX_LIVES + BonusHandler.get_bonus(self, BonusHandler.BonusType.ADDITIONAL_LIFE) - _lives_wasted
 var _is_invulnerable := false
 
 @onready var _enemy_hurtbox: Area2D = %EnemyHurtbox
@@ -69,7 +73,7 @@ func explode() -> void:
 		return
 
 	if _amount_of_lives > 0:
-		_amount_of_lives -= 1
+		_lives_wasted += 1
 		if _amount_of_lives == 0:
 			exploded.emit()
 			queue_free()

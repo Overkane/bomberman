@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BonusPickupsBase" load_steps=3 format=3 uid="uid://dhd2ohhdhm3ls"]
+
+[ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="1_u7q2b"]
+[ext_resource type="Script" uid="uid://d35sigrsgdcd7" path="res://resources/bonus_pickups/bonus_pickup_base.gd" id="2_lb3l7"]
+
+[resource]
+script = ExtResource("2_lb3l7")
+icon = ExtResource("1_u7q2b")
+description = "+1 additional life"
+bonus_type = 3
+metadata/_custom_type_script = "uid://d35sigrsgdcd7"

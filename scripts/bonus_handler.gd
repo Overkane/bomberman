@@ -4,6 +4,7 @@ extends Node
 enum BonusType {
 	BOMB_COUNT = 1,
 	BOMB_POWER = 2,
+	ADDITIONAL_LIFE = 3,
 }
 
 enum BonusCalculationType {
@@ -15,6 +16,7 @@ static var _bonus_map: Dictionary[Node, Array] = {}
 static var _bonus_calculation_type: Dictionary[BonusType, BonusCalculationType] = {
 	BonusType.BOMB_COUNT: BonusCalculationType.ADDITIVE,
 	BonusType.BOMB_POWER: BonusCalculationType.ADDITIVE,
+	BonusType.ADDITIONAL_LIFE: BonusCalculationType.ADDITIVE,
 }
 
 

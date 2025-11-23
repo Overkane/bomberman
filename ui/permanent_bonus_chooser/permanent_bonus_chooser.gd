@@ -7,10 +7,12 @@ const _CARD_NUMBER := 2
 const _PERMANENT_BONUS_CARD_SCENE := preload("uid://ctvae00raux8m")
 const _BOMB_POWER_BONUS := preload("uid://dsfpxdabmgj2j")
 const _MAX_BOMBS_BONUS := preload("uid://b3hpj6e4snkey")
+const _ADDITIONAL_LIFE_BONUS := preload("uid://dhd2ohhdhm3ls")
 
 const _POSSIBLE_PERMANENT_BONUSES: Array[BonusPickupsBase] = [
 	_BOMB_POWER_BONUS,
 	_MAX_BOMBS_BONUS,
+	_ADDITIONAL_LIFE_BONUS,
 ]
 
 @onready var _bonus_card_container: HBoxContainer = %BonusCardContainer
