@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DebugHelper="*res://scripts/debug_helper.gd"
+DebugHelper="*res://autoload/debug_helper.gd"
+MusicManager="*res://autoload/MusicManager.tscn"
 
 [display]
 

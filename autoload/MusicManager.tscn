@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://e656m4i03ffr"]
+
+[ext_resource type="Script" uid="uid://cv6egqt8lhscn" path="res://autoload/music_manager.gd" id="1_nsrmn"]
+[ext_resource type="AudioStream" uid="uid://bx1ev6cewj5tb" path="res://assets/music/8bit Dungeon Level.mp3" id="2_efffc"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_behsq"]
+clip_count = 1
+clip_0/name = &"8 Bit Dungeon Level"
+clip_0/stream = ExtResource("2_efffc")
+clip_0/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 0): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+}
+}
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_nsrmn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_behsq")

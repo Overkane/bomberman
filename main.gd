@@ -21,6 +21,7 @@ var _player: Player
 func _ready() -> void:
 	_start_button.grab_focus.call_deferred()
 	_start_button.pressed.connect(_start_game)
+	MusicManager.play_music(MusicManager.MUSIC_TRACK_DUNGEON_LEVEL)
 
 
 func _start_game() -> void:
