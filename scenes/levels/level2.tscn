@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=4 uid="uid://dw24fwv23rp6x"]
 
-[ext_resource type="Script" uid="uid://dkxegp3lpiddn" path="res://scenes/levels/level2/level2.gd" id="1_iq8gt"]
+[ext_resource type="Script" uid="uid://2l06rbtfjq70" path="res://scenes/levels/level.gd" id="1_gblnm"]
 [ext_resource type="TileSet" uid="uid://01ordjws1gas" path="res://scenes/levels/tilesets/crypt/crypt.tres" id="2_gblnm"]
 [ext_resource type="PackedScene" uid="uid://wcn0q7u74g13" path="res://scenes/destructible_box/destructible_box.tscn" id="6_2xv80"]
 [ext_resource type="PackedScene" uid="uid://42rwl8dniftt" path="res://scenes/enemies/fool/fool.tscn" id="7_08c37"]
 
-[node name="Level2" type="Node2D" node_paths=PackedStringArray("_player_spawn_point")]
-script = ExtResource("1_iq8gt")
-_player_spawn_point = NodePath("PlayerPosition")
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_gblnm")
+metadata/_custom_type_script = "uid://2l06rbtfjq70"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAIwAHAAAAAAABAAAAIwAGAAAAAAACAAAAIwAEAAAAAAADAAAAIwAGAAAAAAAEAAAAIwAGAAAAAAAFAAAAIwAGAAAAAAAAAAEAIwAHAAAAAAAAAAIAIwAGAAAAAAAAAAMAIwAFAAAAAAAAAAQAIwAEAAAAAAAAAAUAIwAGAAAAAAACAAIAIwAHAAAAAAAEAAIAIwAEAAAAAAACAAQAIwAEAAAAAAAEAAQAIwAEAAAAAAAAAAYAIwAEAAAAAAABAAYAIwAGAAAAAAACAAYAIwAHAAAAAAADAAYAIwAEAAAAAAAEAAYAIwAFAAAAAAAFAAYAIwAFAAAAAAAGAAYAIwAGAAAAAAAGAAUAIwAEAAAAAAAGAAQAIwAGAAAAAAAGAAMAIwAHAAAAAAAGAAIAIwAHAAAAAAAGAAEAIwAFAAAAAAAGAAAAIwAHAAAAAAABAAUAIwALAAAAAAABAAQAIwAMAAAAAAABAAMAIwAMAAAAAAABAAIAIwALAAAAAAABAAEAIwAJAAAAAAACAAEAIwAIAAAAAAADAAEAIwAJAAAAAAADAAIAIwAKAAAAAAADAAMAIwAKAAAAAAACAAMAIwAKAAAAAAADAAQAIwAMAAAAAAADAAUAIwAKAAAAAAACAAUAIwALAAAAAAAEAAUAIwAIAAAAAAAFAAUAIwALAAAAAAAFAAQAIwAMAAAAAAAFAAMAIwAKAAAAAAAEAAMAIwAJAAAAAAAFAAIAIwAIAAAAAAAFAAEAIwAMAAAAAAAEAAEAIwAIAAAAAAA=")
