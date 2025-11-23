@@ -8,21 +8,6 @@ script = ExtResource("1_ig7tw")
 [node name="UI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 
-[node name="StartButton" type="Button" parent="UI"]
-unique_name_in_owner = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.5
-offset_top = -15.5
-offset_right = 20.5
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Play"
-
 [node name="GameFinishScreen" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true
 visible = false
@@ -45,6 +30,59 @@ text = "Good job, you beat the game!"
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MainMenu" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 478.0
+offset_top = 356.5
+offset_right = 637.0
+offset_bottom = 411.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MainMenu/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Sound"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundSlider" type="HSlider" parent="UI/MainMenu/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="StartButton" type="Button" parent="UI/MainMenu"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 535.5
+offset_top = 288.5
+offset_right = 576.5
+offset_bottom = 319.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
 
 [node name="Fading" type="CanvasLayer" parent="."]
 layer = 2

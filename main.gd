@@ -18,17 +18,24 @@ var _player: Player
 @onready var _ui: CanvasLayer = %UI
 @onready var _screen_fade: ColorRect = %ScreenFade
 @onready var _game_finish_screen: PanelContainer = %GameFinishScreen
+@onready var _sound_slider: HSlider = %SoundSlider
+@onready var _main_menu: Control = %MainMenu
 
 
 func _ready() -> void:
 	_start_button.grab_focus.call_deferred()
 	_start_button.pressed.connect(_start_game)
 	MusicManager.play_music(MusicManager.MUSIC_TRACK_DUNGEON_LEVEL)
+	AudioServer.set_bus_volume_db(0, linear_to_db(0.5))
+	_sound_slider.set_value_no_signal(0.5)
+	_sound_slider.value_changed.connect(func(value: float):
+		AudioServer.set_bus_volume_db(0, linear_to_db(value))
+	)
 
 
 func _start_game() -> void:
 	await _toggle_screen_fade().finished
-	_start_button.hide()
+	_main_menu.hide()
 	_current_level_list = _LEVEL_LIST.duplicate()
 	_player = _PLAYER_SCENE.instantiate()
 	_player.exploded.connect(_on_player_exploded)
@@ -89,6 +96,6 @@ func _on_player_exploded() -> void:
 	await _toggle_screen_fade().finished
 
 	_current_level.queue_free()
-	_start_button.show()
+	_main_menu.show()
 	# Fade in to show menu again.
 	await _toggle_screen_fade().finished
