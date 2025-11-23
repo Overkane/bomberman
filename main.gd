@@ -53,9 +53,7 @@ func _on_level_finished(finished_level: Level) -> void:
 
 	# Fade out to clear stuff and create permanent bonus chooser.
 	await _toggle_screen_fade().finished
-	# CRITICAL before reparenting must remove the player, otherwise it will trigger level door again.
 	finished_level.remove_child(_player)
-	_player.reparent(self)
 	finished_level.queue_free()
 	BonusHandler.clear_temporary_bonuses()
 	_player.process_mode = Node.PROCESS_MODE_DISABLED
