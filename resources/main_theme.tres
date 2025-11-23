@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c8w6uqx7ko8mo"]
+
+[ext_resource type="FontFile" uid="uid://cgy8yq7h3mds7" path="res://assets/font/lanapixel_nokorean/LanaPixel_NoKorean.ttf" id="1_ols5k"]
+
+[resource]
+default_font = ExtResource("1_ols5k")

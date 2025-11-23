@@ -41,6 +41,10 @@ folder_colors={
 destructible_boxes=""
 enemies=""
 
+[gui]
+
+theme/custom="uid://c8w6uqx7ko8mo"
+
 [input]
 
 move_up={
