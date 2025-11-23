@@ -22,4 +22,5 @@ func open_door():
 
 func _on_body_entered(_body: Node) -> void:
 	if _is_open:
+		SoundManager.play_sound(SoundManager.SOUND_TYPE.ENTER_DOOR)
 		level_door_entered.emit()

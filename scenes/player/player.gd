@@ -57,7 +57,7 @@ func _input(event) -> void:
 		and _bomb_placement_checker.get_overlapping_bodies().size() == 0 \
 		and _current_bombs < _max_bombs:
 		_current_bombs += 1
-		# TODO can't place several bombs in one place
+		SoundManager.play_sound(SoundManager.SOUND_TYPE.PLACE_BOMB)
 		var bomb: Bomb = _BOMB_SCENE.instantiate()
 		bomb.init(_bomb_power)
 		bomb.exploded.connect(func(): _current_bombs -= 1)
@@ -80,6 +80,7 @@ func explode() -> void:
 		return
 
 	if _amount_of_lives > 0:
+		SoundManager.play_sound(SoundManager.SOUND_TYPE.HIT)
 		_lives_wasted += 1
 		if _amount_of_lives == 0:
 			_is_dead = true

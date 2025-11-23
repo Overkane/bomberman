@@ -1,0 +1,24 @@
+[gd_scene load_steps=8 format=3 uid="uid://bm72k32p5015"]
+
+[ext_resource type="Script" uid="uid://ddgiwgjgokaol" path="res://autoload/sound_manager.gd" id="1_i3yra"]
+[ext_resource type="AudioStream" uid="uid://lwvb5dd5iibs" path="res://assets/sfx/boom.wav" id="2_5qmgl"]
+[ext_resource type="AudioStream" uid="uid://cxpvraj4iv6p8" path="res://assets/sfx/hit.wav" id="3_clwvi"]
+[ext_resource type="AudioStream" uid="uid://bcbmq8xfkecnl" path="res://assets/sfx/enter_door.wav" id="4_v161e"]
+[ext_resource type="AudioStream" uid="uid://ccfir7lpornrw" path="res://assets/sfx/powerup.wav" id="5_rjaah"]
+[ext_resource type="AudioStream" uid="uid://bxc4xverovrfn" path="res://assets/sfx/place_bomb.wav" id="6_rjaah"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_5qmgl"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_i3yra")
+_sound_list = Dictionary[int, AudioStream]({
+0: ExtResource("3_clwvi"),
+1: ExtResource("2_5qmgl"),
+2: ExtResource("4_v161e"),
+3: ExtResource("6_rjaah"),
+4: ExtResource("5_rjaah")
+})
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamPolyphonic_5qmgl")

@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 func explode() -> void:
 	if _is_dead:
 		return
-
+	SoundManager.play_sound(SoundManager.SOUND_TYPE.HIT)
 	_is_dead = true
 	exploded.emit()
 	var tween = create_tween()
