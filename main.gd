@@ -17,6 +17,7 @@ var _player: Player
 @onready var _start_button: Button = %StartButton
 @onready var _ui: CanvasLayer = %UI
 @onready var _screen_fade: ColorRect = %ScreenFade
+@onready var _game_finish_screen: PanelContainer = %GameFinishScreen
 
 
 func _ready() -> void:
@@ -51,7 +52,8 @@ func _toggle_screen_fade() -> Tween:
 
 func _on_level_finished() -> void:
 	if _current_level_list.size() == 0:
-		print("Game Finished!")
+		_game_finish_screen.show()
+		_player.process_mode = Node.PROCESS_MODE_DISABLED
 		return
 
 	# Fade out to clear stuff and create permanent bonus chooser.
