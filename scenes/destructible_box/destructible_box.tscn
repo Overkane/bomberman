@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://wcn0q7u74g13"]
 
 [ext_resource type="Script" uid="uid://bk1eohu6ywn6o" path="res://scenes/destructible_box/destructible_box.gd" id="1_ky4wp"]
-[ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="2_g2ids"]
+[ext_resource type="Texture2D" uid="uid://cmxk8n8ei1xy0" path="res://scenes/destructible_box/sprites/boulder.png" id="2_g2ids"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pwpy3"]
-radius = 16.0
-height = 32.0
+radius = 13.0
+height = 26.0
 
 [node name="DestructibleBox" type="CharacterBody2D" groups=["destructible_boxes"]]
 collision_layer = 49164
@@ -14,8 +14,8 @@ script = ExtResource("1_ky4wp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.8633869, 0.58813876, 3.85046e-07, 1)
-scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_g2ids")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_pwpy3")
