@@ -36,7 +36,7 @@ func _load_next_level() -> void:
 	_player.global_position = next_level.get_player_spawn_point()
 	add_child(next_level)
 
-	add_child(_player)
+	next_level.add_child(_player)
 
 	next_level.level_finished.connect(_on_level_finished.bind(next_level))
 
@@ -53,9 +53,11 @@ func _on_level_finished(finished_level: Level) -> void:
 
 	# Fade out to clear stuff and create permanent bonus chooser.
 	await _toggle_screen_fade().finished
+	# CRITICAL before reparenting must remove the player, otherwise it will trigger level door again.
+	finished_level.remove_child(_player)
+	_player.reparent(self)
 	finished_level.queue_free()
 	BonusHandler.clear_temporary_bonuses()
-	remove_child(_player)
 	_player.process_mode = Node.PROCESS_MODE_DISABLED
 
 	var permanent_bonus_chooser: PermanentBonusChooser = _PERMANENT_BONUS_CHOOSER.instantiate()

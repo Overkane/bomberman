@@ -65,7 +65,7 @@ func _input(event) -> void:
 			var offset_mult = 1 if global_position.y > snapped_position.y else -1
 			snapped_position.y += offset_mult * Globals.TILE_SIZE / 2.0
 		bomb.global_position = snapped_position
-		get_tree().root.add_child(bomb)
+		add_sibling(bomb)
 
 
 func explode() -> void:
