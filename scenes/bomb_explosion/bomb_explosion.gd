@@ -11,8 +11,8 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node) -> void:
 	assert(body.has_method("explode"), "Body does not have an explode() method")
-	await get_tree().create_timer(0.15).timeout
 	body.call_deferred("explode")
+
 
 func _on_explosion_lifetime_timeout() -> void:
 	queue_free()
