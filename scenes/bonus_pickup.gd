@@ -18,11 +18,11 @@ func _ready() -> void:
 func _on_body_entered(body: Node):
 	BonusHandler.apply_bonus(body, bonus_type)
 
-	bonus_pickup_message.reparent(get_tree().root)
+	# TODO implement better solution to remove bonus messages.
+	bonus_pickup_message.reparent(get_parent()) # Will be removed with the parent - level.
 	bonus_pickup_message.show()
 	var tween = get_tree().create_tween()
 	tween.tween_property(bonus_pickup_message, "position:y", position.y - 50, 1.25)
 	tween.set_parallel()
 	tween.tween_property(bonus_pickup_message, "self_modulate:a", 0, 1.25)
-	tween.tween_callback(func() -> void: bonus_pickup_message.queue_free())
 	queue_free()
