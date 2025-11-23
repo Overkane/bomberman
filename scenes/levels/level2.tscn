@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=4 uid="uid://dw24fwv23rp6x"]
+[gd_scene load_steps=8 format=4 uid="uid://dw24fwv23rp6x"]
 
 [ext_resource type="Script" uid="uid://2l06rbtfjq70" path="res://scenes/levels/level.gd" id="1_gblnm"]
+[ext_resource type="Script" uid="uid://d35sigrsgdcd7" path="res://resources/bonus_pickups/bonus_pickup_base.gd" id="2_dj4wq"]
 [ext_resource type="TileSet" uid="uid://01ordjws1gas" path="res://scenes/levels/tilesets/crypt/crypt.tres" id="2_gblnm"]
+[ext_resource type="Resource" uid="uid://dsfpxdabmgj2j" path="res://resources/bonus_pickups/bomb_power.tres" id="3_k0mew"]
+[ext_resource type="Resource" uid="uid://b3hpj6e4snkey" path="res://resources/bonus_pickups/max_bombs.tres" id="4_b0vvs"]
 [ext_resource type="PackedScene" uid="uid://wcn0q7u74g13" path="res://scenes/destructible_box/destructible_box.tscn" id="6_2xv80"]
 [ext_resource type="PackedScene" uid="uid://42rwl8dniftt" path="res://scenes/enemies/fool/fool.tscn" id="7_08c37"]
 
-[node name="Level2" type="Node2D"]
+[node name="Level2" type="Node2D" node_paths=PackedStringArray("_player_spawn_point")]
 script = ExtResource("1_gblnm")
+_bonus_drop_table = Array[ExtResource("2_dj4wq")]([ExtResource("3_k0mew"), ExtResource("4_b0vvs")])
+_player_spawn_point = NodePath("PlayerPosition")
 metadata/_custom_type_script = "uid://2l06rbtfjq70"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

@@ -3,14 +3,15 @@ extends Node2D
 
 signal level_finished
 
-const LEVEL_DOOR_SCENE = preload("uid://u1lrj0i8v7ll")
-const BONUS_PICKUP_SCENE = preload("uid://dri4l3tofa24c")
+const _LEVEL_DOOR_SCENE = preload("uid://u1lrj0i8v7ll")
+const _BONUS_PICKUP_SCENE = preload("uid://dri4l3tofa24c")
 
-@export var drop_table: Array = []
+@export var _bonus_drop_table: Array[BonusPickupsBase] = []
 @export var _player_spawn_point: Marker2D
 
-var level_door: LevelDoor
-var current_enemy_amount: int = 0
+var _final_drop_table: Array = []
+var _level_door: LevelDoor
+var _current_enemy_amount: int = 0
 
 
 func _ready() -> void:
@@ -18,24 +19,26 @@ func _ready() -> void:
 
 	var destructible_boxes: Array = get_tree().get_nodes_in_group(Globals.GROUP_DESTRUCTIBLE_BOXES)
 
+	_final_drop_table.append_array(_bonus_drop_table)
+
 	# All levels must have door scene for being able to complete the level.
-	drop_table.append(LEVEL_DOOR_SCENE)
-	if drop_table.size() > destructible_boxes.size():
+	_final_drop_table.append(_LEVEL_DOOR_SCENE)
+	if _final_drop_table.size() > destructible_boxes.size():
 		assert(false, "Drop table size cannot be larger than destructible boxes size.")
 
 	# Check if need to fill drop table with null values for empty drops.
-	if drop_table.size() < destructible_boxes.size():
-		var empty_slots: int = destructible_boxes.size() - drop_table.size()
+	if _final_drop_table.size() < destructible_boxes.size():
+		var empty_slots: int = destructible_boxes.size() - _final_drop_table.size()
 		for i in range(empty_slots):
-			drop_table.append(null)
+			_final_drop_table.append(null)
 
 	for destructible_box: DestructibleBox in destructible_boxes:
 		destructible_box.exploded.connect(func():
-			drop_table.shuffle()
-			var drop_table_item: Variant = drop_table.pop_back()
+			_final_drop_table.shuffle()
+			var drop_table_item: Variant = _final_drop_table.pop_back()
 
 			if drop_table_item is BonusPickupsBase:
-				var bonus_pickup: BonusPickup = BONUS_PICKUP_SCENE.instantiate()
+				var bonus_pickup: BonusPickup = _BONUS_PICKUP_SCENE.instantiate()
 				bonus_pickup.global_position = destructible_box.global_position
 				bonus_pickup.icon = drop_table_item.icon
 				bonus_pickup.bonus_type = drop_table_item.bonus_type
@@ -45,23 +48,23 @@ func _ready() -> void:
 				level_object.global_position = destructible_box.global_position
 				add_child(level_object)
 				if level_object is LevelDoor:
-					level_door = level_object
+					_level_door = level_object
 
-					if current_enemy_amount == 0:
-						level_door.open_door()
+					if _current_enemy_amount == 0:
+						_level_door.open_door()
 
-					level_door.level_door_entered.connect(func():
+					_level_door.level_door_entered.connect(func():
 						level_finished.emit()
 					)
 		)
 
 	for enemy: Fool in get_tree().get_nodes_in_group(Globals.GROUP_ENEMIES):
-		current_enemy_amount += 1
+		_current_enemy_amount += 1
 		enemy.exploded.connect(func():
-			current_enemy_amount -= 1
+			_current_enemy_amount -= 1
 			# Check if all enemies are killed to open the level door.
-			if current_enemy_amount == 0 and level_door != null:
-				level_door.open_door()
+			if _current_enemy_amount == 0 and _level_door != null:
+				_level_door.open_door()
 		)
 
 
