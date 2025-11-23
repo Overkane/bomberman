@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bna7qyy6d8r7g"]
+[gd_scene load_steps=2 format=3 uid="uid://bna7qyy6d8r7g"]
 
 [ext_resource type="Script" uid="uid://cujrcg5vtlp71" path="res://ui/permanent_bonus_chooser/permanent_bonus_chooser.gd" id="1_37fwu"]
-[ext_resource type="PackedScene" uid="uid://ctvae00raux8m" path="res://ui/permanent_bonus_chooser/permanent_bonus_card/permanent_bonus_card.tscn" id="2_5m4hw"]
 
 [node name="PermanentBonusChooser" type="Control"]
 layout_mode = 3
@@ -34,9 +33,3 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
-
-[node name="PermanentBonusCard" parent="CenterContainer/VBoxContainer/BonusCardContainer" instance=ExtResource("2_5m4hw")]
-layout_mode = 2
-
-[node name="PermanentBonusCard2" parent="CenterContainer/VBoxContainer/BonusCardContainer" instance=ExtResource("2_5m4hw")]
-layout_mode = 2

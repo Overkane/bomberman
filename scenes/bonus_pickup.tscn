@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dri4l3tofa24c"]
 
 [ext_resource type="Script" uid="uid://v7ywnkr1wegc" path="res://scenes/bonus_pickup.gd" id="1_1d5qg"]
-[ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="2_tj3im"]
+[ext_resource type="Texture2D" uid="uid://b8kqy8ie7dqi1" path="res://assets/sprites/chest.png" id="2_1d5qg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tjraq"]
 size = Vector2(18, 18)
@@ -12,9 +12,10 @@ collision_mask = 2
 script = ExtResource("1_1d5qg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.608, 0.16000003, 1, 1)
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_tj3im")
+unique_name_in_owner = true
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_1d5qg")
+offset = Vector2(2, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tjraq")

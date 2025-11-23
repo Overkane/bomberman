@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctvae00raux8m"]
 
 [ext_resource type="Script" uid="uid://c6qv6ttxed4xw" path="res://ui/permanent_bonus_chooser/permanent_bonus_card/permanent_bonus_card.gd" id="1_goj3g"]
-[ext_resource type="Texture2D" uid="uid://djsb6x80t66ij" path="res://icon.svg" id="1_xwpui"]
+[ext_resource type="Texture2D" uid="uid://b8kqy8ie7dqi1" path="res://assets/sprites/chest.png" id="2_goj3g"]
 
 [node name="PermanentBonusCard" type="AspectRatioContainer"]
 offset_right = 128.0
@@ -14,8 +14,10 @@ layout_mode = 2
 
 [node name="CardButton" type="TextureButton" parent="VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture_normal = ExtResource("1_xwpui")
+texture_normal = ExtResource("2_goj3g")
+stretch_mode = 5
 
 [node name="CardDescription" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
