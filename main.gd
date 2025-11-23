@@ -11,6 +11,7 @@ const _LEVEL_LIST: Array[PackedScene] = [
 ]
 
 var _current_level_list: Array[PackedScene]
+var _current_level: Level
 var _player: Player
 
 @onready var _start_button: Button = %StartButton
@@ -25,36 +26,38 @@ func _ready() -> void:
 
 
 func _start_game() -> void:
+	await _toggle_screen_fade().finished
 	_start_button.hide()
 	_current_level_list = _LEVEL_LIST.duplicate()
 	_player = _PLAYER_SCENE.instantiate()
+	_player.exploded.connect(_on_player_exploded)
 	_load_next_level()
+	await _toggle_screen_fade().finished
 
 func _load_next_level() -> void:
 	var next_level_scene: PackedScene = _current_level_list.pop_front()
-	var next_level: Level = next_level_scene.instantiate()
-	_player.global_position = next_level.get_player_spawn_point()
-	add_child(next_level)
+	_current_level = next_level_scene.instantiate()
+	_player.global_position = _current_level.get_player_spawn_point()
+	add_child(_current_level)
 
-	next_level.add_child(_player)
-
-	next_level.level_finished.connect(_on_level_finished.bind(next_level))
+	_current_level.add_child(_player)
+	_current_level.level_finished.connect(_on_level_finished)
 
 func _toggle_screen_fade() -> Tween:
 	var tween := create_tween()
-	tween.tween_property(_screen_fade, "modulate:a", 1.0 - _screen_fade.modulate.a, 1.33)
+	tween.tween_property(_screen_fade, "modulate:a", 1.0 - _screen_fade.modulate.a, 0.75)
 	return tween
 
 
-func _on_level_finished(finished_level: Level) -> void:
+func _on_level_finished() -> void:
 	if _current_level_list.size() == 0:
 		print("Game Finished!")
 		return
 
 	# Fade out to clear stuff and create permanent bonus chooser.
 	await _toggle_screen_fade().finished
-	finished_level.remove_child(_player)
-	finished_level.queue_free()
+	_current_level.remove_child(_player)
+	_current_level.queue_free()
 	BonusHandler.clear_temporary_bonuses()
 	_player.process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -78,3 +81,12 @@ func _on_level_finished(finished_level: Level) -> void:
 	# Fade in to show next level.
 	await _toggle_screen_fade().finished
 	_player.process_mode = Node.PROCESS_MODE_INHERIT
+
+func _on_player_exploded() -> void:
+	# Fade out to clear stuff
+	await _toggle_screen_fade().finished
+
+	_current_level.queue_free()
+	_start_button.show()
+	# Fade in to show menu again.
+	await _toggle_screen_fade().finished

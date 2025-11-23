@@ -76,6 +76,7 @@ func explode() -> void:
 		_lives_wasted += 1
 		if _amount_of_lives == 0:
 			exploded.emit()
+			BonusHandler.clear_all_bonuses()
 			queue_free()
 		else:
 			_is_invulnerable = true

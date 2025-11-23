@@ -51,6 +51,9 @@ static func get_bonus(entity: Node, bonus_type: BonusType) -> Variant:
 
 	return null
 
+static func clear_all_bonuses() -> void:
+	_bonus_map.clear()
+
 static func clear_temporary_bonuses() -> void:
 	for entity in _bonus_map.keys():
 		_bonus_map[entity] = _bonus_map[entity].filter(func(bonus: Bonus) -> bool:
