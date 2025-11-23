@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_lb3l7")
 icon = ExtResource("1_u7q2b")
-description = "+1 additional life"
+description = "+1 life"
 bonus_type = 3
 metadata/_custom_type_script = "uid://d35sigrsgdcd7"

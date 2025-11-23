@@ -19,3 +19,15 @@ offset = Vector2(2, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tjraq")
+
+[node name="BonusPickupMessage" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -18.0
+offset_top = -8.0
+offset_right = 22.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 8
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
