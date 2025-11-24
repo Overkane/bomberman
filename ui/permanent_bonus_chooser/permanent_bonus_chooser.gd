@@ -39,6 +39,7 @@ func _ready() -> void:
 			bonus_card.grab_focus.call_deferred()
 
 	_confirm_button.pressed.connect(func() -> void:
+		_confirm_button.disabled = true
 		var picked_card: PermanentBonusCard = get_viewport().gui_get_focus_owner()
 		picked_card.pick()
 	)
