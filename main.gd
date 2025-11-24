@@ -32,6 +32,10 @@ func _ready() -> void:
 		AudioServer.set_bus_volume_db(0, linear_to_db(value))
 	)
 
+func _input(event) -> void:
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and event is InputEventMouseButton:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 
 func _start_game() -> void:
 _start_button.disabled = true
