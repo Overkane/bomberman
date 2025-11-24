@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 DebugHelper="*res://autoload/debug_helper.gd"
 MusicManager="*res://autoload/music_manager.tscn"
 SoundManager="*res://autoload/sound_manager.tscn"
+BonusHandler="*res://autoload/bonus_handler.gd"
 
 [display]
 

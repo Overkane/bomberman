@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckogy8ldbtbum"]
+[gd_scene load_steps=77 format=3 uid="uid://ckogy8ldbtbum"]
 
 [ext_resource type="Script" uid="uid://bbrxkqlb58hw7" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Material" uid="uid://dgb4dtq711es0" path="res://resources/materials/dissolve.tres" id="1_gmlin"]
@@ -550,3 +550,50 @@ shape = SubResource("CapsuleShape2D_dqkch")
 unique_name_in_owner = true
 process_callback = 0
 one_shot = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LivesTitle" type="Label" parent="HUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Lives:"
+
+[node name="LivesValue" type="Label" parent="HUD/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BombCountTitle" type="Label" parent="HUD/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Bomb count:"
+
+[node name="BombCountValue" type="Label" parent="HUD/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BombPowerTitle" type="Label" parent="HUD/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Bomb power:"
+
+[node name="BombPowerValue" type="Label" parent="HUD/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"

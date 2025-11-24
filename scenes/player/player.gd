@@ -27,10 +27,19 @@ var _is_dead := false
 @onready var _enemy_hurtbox: Area2D = %EnemyHurtbox
 @onready var _invulnerability_timer: Timer = %InvulnerabilityTimer
 @onready var _bomb_placement_checker: Area2D = %BombPlacementChecker
+@onready var lives_value: Label = %LivesValue
+@onready var bomb_count_value: Label = %BombCountValue
+@onready var bomb_power_value: Label = %BombPowerValue
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _ready() -> void:
+	update_HUD()
+	BonusHandler.bonus_applied.connect(func(entity: Node, _bonus_type: BonusHandler.BonusType) -> void:
+		if entity == self:
+			update_HUD()
+	)
+
 	_enemy_hurtbox.body_entered.connect(func(_body: Node) -> void:
 		explode()
 	)
@@ -76,10 +85,14 @@ func _input(event) -> void:
 		and _bomb_placement_checker.get_overlapping_bodies().size() == 0 \
 		and _current_bombs < _max_bombs:
 		_current_bombs += 1
+		update_HUD()
 		SoundManager.play_sound(SoundManager.SOUND_TYPE.PLACE_BOMB)
 		var bomb: Bomb = _BOMB_SCENE.instantiate()
 		bomb.init(_bomb_power)
-		bomb.exploded.connect(func(): _current_bombs -= 1)
+		bomb.exploded.connect(func():
+			_current_bombs -= 1
+			update_HUD()
+		)
 		# Bomb shoulbe be placed only in the center of each tile, which will be the half of tile size.
 		# To exclude position between tiles, need to check if one of coords can be divided by tile size.
 		# If it is, then need to add offset to the closest tile center.
@@ -93,6 +106,11 @@ func _input(event) -> void:
 		bomb.global_position = snapped_position
 		add_sibling(bomb)
 
+# TODO should be better solution
+func update_HUD() -> void:
+	lives_value.text = str(_amount_of_lives)
+	bomb_count_value.text = "%s/%s" % [_current_bombs, _max_bombs]
+	bomb_power_value.text = str(_bomb_power)
 
 func explode() -> void:
 	if _is_invulnerable or _is_dead:

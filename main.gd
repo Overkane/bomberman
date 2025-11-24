@@ -38,7 +38,7 @@ func _input(event) -> void:
 
 
 func _start_game() -> void:
-_start_button.disabled = true
+	_start_button.disabled = true
 	await _toggle_screen_fade().finished
 	_main_menu.hide()
 	_current_level_list = _LEVEL_LIST.duplicate()
@@ -84,7 +84,10 @@ func _on_level_finished() -> void:
 	# Fade in to show permanent bonus chooser.
 	await _toggle_screen_fade().finished
 
+
 	await permanent_bonus_chooser.bonus_selected
+
+	_player.update_HUD()
 
 	# Fade out to remove permanent bonus chooser and load next level.
 	await _toggle_screen_fade().finished
@@ -102,7 +105,7 @@ func _on_player_exploded() -> void:
 
 	_current_level.queue_free()
 	_main_menu.show()
-_start_button.disabled = false
+	_start_button.disabled = false
 	_start_button.grab_focus()
 	# Fade in to show menu again.
 	await _toggle_screen_fade().finished
