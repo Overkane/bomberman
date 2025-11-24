@@ -48,6 +48,7 @@ func _ready() -> void:
 	)
 	_invulnerability_timer.timeout.connect(func() -> void:
 		_is_invulnerable = false
+		modulate.a = 1.0
 		# If still inside the enemy during invulnerability, explode again.
 		if _enemy_hurtbox.has_overlapping_bodies():
 			explode()
@@ -132,6 +133,10 @@ func explode() -> void:
 			BonusHandler.clear_all_bonuses()
 		else:
 			_is_invulnerable = true
+			var tween = create_tween()
+			tween.tween_property(self, "modulate:a", 0.1, _INVULNERABILITY_TIME / 8)
+			tween.tween_property(self, "modulate:a", 0.9, _INVULNERABILITY_TIME / 8)
+			tween.set_loops(4)
 			_invulnerability_timer.start(_INVULNERABILITY_TIME)
 
 
