@@ -264,8 +264,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_76ftv"]
-radius = 15.0
-height = 32.0
+height = 22.0
 
 [node name="Bomb" type="CharacterBody2D"]
 z_index = 1
@@ -274,14 +273,13 @@ collision_mask = 19
 script = ExtResource("1_rqjch")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_yj6gm")
 animation = &"birth"
 autoplay = "birth"
 offset = Vector2(4, -9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_76ftv")
 
 [node name="BombArea" type="Area2D" parent="."]
@@ -290,7 +288,6 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BombArea"]
-visible = false
 shape = SubResource("CapsuleShape2D_76ftv")
 
 [node name="FuseTimer" type="Timer" parent="."]

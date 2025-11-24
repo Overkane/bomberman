@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 signal exploded
 
-const _BASE_SPEED := 150.0
+const _BASE_SPEED := 100.0
 const _BASE_MAX_LIVES := 1
 const _BASE_MAX_BOMBS := 1
 const _BASE_BOMB_POWER := 1
@@ -27,6 +27,7 @@ var _is_dead := false
 @onready var _enemy_hurtbox: Area2D = %EnemyHurtbox
 @onready var _invulnerability_timer: Timer = %InvulnerabilityTimer
 @onready var _bomb_placement_checker: Area2D = %BombPlacementChecker
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _ready() -> void:
@@ -47,6 +48,24 @@ func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * _BASE_SPEED
 
+	var animation_action: String = "idle"
+	if velocity != Vector2.ZERO:
+		animation_action = "move"
+	var animation_direction: String
+	if direction.x > 0:
+		animation_direction = "right"
+	elif direction.x < 0:
+		animation_direction = "left"
+	elif direction.y > 0:
+		animation_direction = "down"
+	elif direction.y < 0:
+		animation_direction = "up"
+	else:
+		animation_direction = animated_sprite_2d.animation.get_slice("_", 1)
+	var animation_name: String = "%s_%s" % [animation_action, animation_direction]
+	if animated_sprite_2d.animation != animation_name:
+		animated_sprite_2d.animation = animation_name
+		animated_sprite_2d.play()
 	move_and_slide()
 
 func _input(event) -> void:
