@@ -6,6 +6,7 @@ enum BonusType {
 	BOMB_COUNT = 1,
 	BOMB_POWER = 2,
 	ADDITIONAL_LIFE = 3,
+	MOVESPEED = 4,
 }
 
 enum BonusCalculationType {
@@ -18,6 +19,7 @@ var _bonus_calculation_type: Dictionary[BonusType, BonusCalculationType] = {
 	BonusType.BOMB_COUNT: BonusCalculationType.ADDITIVE,
 	BonusType.BOMB_POWER: BonusCalculationType.ADDITIVE,
 	BonusType.ADDITIONAL_LIFE: BonusCalculationType.ADDITIVE,
+	BonusType.MOVESPEED: BonusCalculationType.ADDITIVE,
 }
 
 

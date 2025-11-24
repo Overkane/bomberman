@@ -23,6 +23,9 @@ var _amount_of_lives: int:
 		return _BASE_MAX_LIVES + BonusHandler.get_bonus(self, BonusHandler.BonusType.ADDITIONAL_LIFE) - _lives_wasted
 var _is_invulnerable := false
 var _is_dead := false
+var _speed: float:
+	get():
+		return _BASE_SPEED + (10.0 * BonusHandler.get_bonus(self, BonusHandler.BonusType.MOVESPEED))
 
 @onready var _enemy_hurtbox: Area2D = %EnemyHurtbox
 @onready var _invulnerability_timer: Timer = %InvulnerabilityTimer
@@ -55,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * _BASE_SPEED
+	velocity = direction * _speed
 
 	var animation_action: String = "idle"
 	if velocity != Vector2.ZERO:

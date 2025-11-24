@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BonusPickupsBase" load_steps=3 format=3 uid="uid://df0ejgb3m1aru"]
+
+[ext_resource type="Texture2D" uid="uid://b8kqy8ie7dqi1" path="res://assets/sprites/chest.png" id="1_xhj52"]
+[ext_resource type="Script" uid="uid://d35sigrsgdcd7" path="res://resources/bonus_pickups/bonus_pickup_base.gd" id="2_1amtc"]
+
+[resource]
+script = ExtResource("2_1amtc")
+icon = ExtResource("1_xhj52")
+description = "+10% movespeed"
+bonus_type = 4
+metadata/_custom_type_script = "uid://d35sigrsgdcd7"
