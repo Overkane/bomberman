@@ -105,7 +105,7 @@ func _on_player_exploded() -> void:
 
 	_current_level.queue_free()
 	_main_menu.show()
-	_start_button.disabled = false
-	_start_button.grab_focus()
 	# Fade in to show menu again.
 	await _toggle_screen_fade().finished
+	_start_button.disabled = false
+	_start_button.grab_focus()
