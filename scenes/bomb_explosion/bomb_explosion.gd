@@ -13,6 +13,8 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	assert(body.has_method("explode"), "Body does not have an explode() method")
 	body.call_deferred("explode")
+	if body is DestructibleBox:
+		queue_free()
 
 
 func _on_explosion_lifetime_timeout() -> void:
