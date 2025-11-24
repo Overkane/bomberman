@@ -17,6 +17,7 @@ func _ready() -> void:
 		card_selected.emit(_bonus_type)
 	)
 	focus_entered.connect(func() -> void:
+		SoundManager.play_sound(SoundManager.SoundType.PLACE_BOMB)
 		_highlight.show()
 	)
 	focus_exited.connect(func() -> void:

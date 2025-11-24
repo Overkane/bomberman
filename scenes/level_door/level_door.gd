@@ -19,8 +19,7 @@ func open_door():
 	sprite_2d.texture = OPEN_DOOR_SPRITE
 
 
-
 func _on_body_entered(_body: Node) -> void:
 	if _is_open:
-		SoundManager.play_sound(SoundManager.SOUND_TYPE.ENTER_DOOR)
+		SoundManager.play_sound(SoundManager.SoundType.ENTER_DOOR)
 		level_door_entered.emit()

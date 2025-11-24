@@ -7,7 +7,7 @@ extends Area2D
 func _ready() -> void:
 	_explosion_lifetime_timer.timeout.connect(_on_explosion_lifetime_timeout)
 	body_entered.connect(_on_body_entered)
-	SoundManager.play_sound(SoundManager.SOUND_TYPE.BOOM)
+	SoundManager.play_sound(SoundManager.SoundType.BOOM)
 
 
 func _on_body_entered(body: Node) -> void:

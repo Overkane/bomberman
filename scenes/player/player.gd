@@ -86,7 +86,7 @@ func _input(event) -> void:
 		and _current_bombs < _max_bombs:
 		_current_bombs += 1
 		update_HUD()
-		SoundManager.play_sound(SoundManager.SOUND_TYPE.PLACE_BOMB)
+		SoundManager.play_sound(SoundManager.SoundType.PLACE_BOMB)
 		var bomb: Bomb = _BOMB_SCENE.instantiate()
 		bomb.init(_bomb_power)
 		bomb.exploded.connect(func():
@@ -117,7 +117,7 @@ func explode() -> void:
 		return
 
 	if _amount_of_lives > 0:
-		SoundManager.play_sound(SoundManager.SOUND_TYPE.HIT)
+		SoundManager.play_sound(SoundManager.SoundType.HIT)
 		_lives_wasted += 1
 		if _amount_of_lives == 0:
 			_is_dead = true

@@ -1,6 +1,6 @@
 extends Node
 
-enum SOUND_TYPE {
+enum SoundType {
 	HIT = 0,
 	BOOM = 1,
 	ENTER_DOOR = 2,
@@ -8,7 +8,7 @@ enum SOUND_TYPE {
 	POWERUP = 4,
 }
 
-@export var _sound_list: Dictionary[SOUND_TYPE, AudioStream]
+@export var _sound_list: Dictionary[SoundType, AudioStream]
 
 @onready var _audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 	_audio_stream_player.play()
 
 
-func play_sound(sound_type: SOUND_TYPE):
+func play_sound(sound_type: SoundType):
 	if not _audio_stream_player.playing:
 		_audio_stream_player.play()
 

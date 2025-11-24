@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node):
 	BonusHandler.apply_bonus(body, bonus_type)
-	SoundManager.play_sound(SoundManager.SOUND_TYPE.POWERUP)
+	SoundManager.play_sound(SoundManager.SoundType.POWERUP)
 
 	# TODO implement better solution to remove bonus messages.
 	bonus_pickup_message.reparent(get_parent()) # Will be removed with the parent - level.

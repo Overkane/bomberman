@@ -31,7 +31,7 @@ func _ready() -> void:
 		var bonus_card: PermanentBonusCard = _PERMANENT_BONUS_CARD_SCENE.instantiate()
 		bonus_card.init(current_bonus_list.pop_back())
 		bonus_card.card_selected.connect(func(bonus_type: BonusHandler.BonusType) -> void:
-			SoundManager.play_sound(SoundManager.SOUND_TYPE.POWERUP)
+			SoundManager.play_sound(SoundManager.SoundType.POWERUP)
 			bonus_selected.emit(bonus_type)
 		)
 		_bonus_card_container.add_child(bonus_card)
