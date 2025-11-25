@@ -24,6 +24,7 @@ shader_parameter/size_3 = 0.05
 [node name="Ghostly" instance=ExtResource("1_dtin0")]
 material = SubResource("ShaderMaterial_8klfg")
 collision_mask = 1
+_speed = 55.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 self_modulate = Color(0.4712, 0.48856002, 0.62, 0.6313726)
