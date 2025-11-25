@@ -42,6 +42,7 @@ folder_colors={
 
 destructible_boxes=""
 enemies=""
+player_spawners=""
 
 [gui]
 

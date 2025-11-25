@@ -1,9 +1,11 @@
+@abstract
 class_name Globals
 extends Node
 
 # Groups
 const GROUP_ENEMIES := &"enemies"
 const GROUP_DESTRUCTIBLE_BOXES := &"destructible_boxes"
+const GROUP_PLAYER_SPAWNERS := &"player_spawners"
 
 enum CollisionLayer {
 	WORLD = 1,

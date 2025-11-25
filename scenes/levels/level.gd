@@ -7,14 +7,15 @@ const _LEVEL_DOOR_SCENE = preload("uid://u1lrj0i8v7ll")
 const _BONUS_PICKUP_SCENE = preload("uid://dri4l3tofa24c")
 
 @export var _bonus_drop_table: Array[BonusPickupsBase] = []
-@export var _player_spawn_point: Marker2D
 
+var _player_spawn_point: Marker2D
 var _final_drop_table: Array = []
 var _level_door: LevelDoor
 var _current_enemy_amount: int = 0
 
 
 func _ready() -> void:
+	_player_spawn_point = get_tree().get_first_node_in_group(Globals.GROUP_PLAYER_SPAWNERS)
 	assert(_player_spawn_point != null, "Player spawn point must be assigned in the level.")
 
 	var destructible_boxes: Array = get_tree().get_nodes_in_group(Globals.GROUP_DESTRUCTIBLE_BOXES)

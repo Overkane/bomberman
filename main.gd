@@ -50,8 +50,8 @@ func _start_game() -> void:
 func _load_next_level() -> void:
 	var next_level_scene: PackedScene = _current_level_list.pop_front()
 	_current_level = next_level_scene.instantiate()
-	_player.global_position = _current_level.get_player_spawn_point()
 	add_child(_current_level)
+	_player.global_position = _current_level.get_player_spawn_point()
 
 	_current_level.add_child(_player)
 	_current_level.level_finished.connect(_on_level_finished)
