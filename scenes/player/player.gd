@@ -3,8 +3,8 @@ extends CharacterBody2D
 
 signal exploded
 
-const _BASE_SPEED := 100.0
-const _BASE_MAX_LIVES := 1
+const _BASE_SPEED := 90.0
+const _BASE_MAX_LIVES := 3
 const _BASE_MAX_BOMBS := 1
 const _BASE_BOMB_POWER := 1
 const _BOMB_SCENE := preload("uid://bpo5y5pvhbibe")
