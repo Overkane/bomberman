@@ -59,7 +59,7 @@ func _ready() -> void:
 					)
 		)
 
-	for enemy: Fool in get_tree().get_nodes_in_group(Globals.GROUP_ENEMIES):
+	for enemy in get_tree().get_nodes_in_group(Globals.GROUP_ENEMIES):
 		_current_enemy_amount += 1
 		enemy.exploded.connect(func():
 			_current_enemy_amount -= 1
