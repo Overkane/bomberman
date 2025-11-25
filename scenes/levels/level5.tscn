@@ -107,3 +107,4 @@ position = Vector2(110, 145)
 [node name="Ghostly" parent="." instance=ExtResource("9_lsgss")]
 material = SubResource("ShaderMaterial_vnf24")
 position = Vector2(208, 240)
+_initial_direction_id = 2
