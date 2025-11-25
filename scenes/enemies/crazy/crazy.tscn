@@ -1,106 +1,106 @@
-[gd_scene load_steps=33 format=3 uid="uid://42rwl8dniftt"]
+[gd_scene load_steps=33 format=3 uid="uid://cdq7rimich8jj"]
 
-[ext_resource type="Material" uid="uid://dgb4dtq711es0" path="res://resources/materials/dissolve.tres" id="1_oudoi"]
-[ext_resource type="Script" uid="uid://dgal3shaj5t24" path="res://scenes/enemies/fool/fool.gd" id="1_t7nay"]
-[ext_resource type="Texture2D" uid="uid://bic6lfy6blbrx" path="res://scenes/enemies/fool/sprites/Run_F.png" id="3_qm32l"]
-[ext_resource type="Texture2D" uid="uid://cvobn0qankmi2" path="res://scenes/enemies/fool/sprites/Run_34L.png" id="4_6w38w"]
-[ext_resource type="Texture2D" uid="uid://tnu2ol28ell6" path="res://scenes/enemies/fool/sprites/Run_34F.png" id="4_qa8gm"]
-[ext_resource type="Texture2D" uid="uid://col5v31j1i474" path="res://scenes/enemies/fool/sprites/Run_Back.png" id="5_6w38w"]
+[ext_resource type="Material" uid="uid://dgb4dtq711es0" path="res://resources/materials/dissolve.tres" id="1_g006p"]
+[ext_resource type="Script" uid="uid://cd6jo2kdoi246" path="res://scenes/enemies/crazy/crazy.gd" id="2_a212s"]
+[ext_resource type="Texture2D" uid="uid://bic6lfy6blbrx" path="res://scenes/enemies/fool/sprites/Run_F.png" id="3_luxrt"]
+[ext_resource type="Texture2D" uid="uid://cvobn0qankmi2" path="res://scenes/enemies/fool/sprites/Run_34L.png" id="4_7220x"]
+[ext_resource type="Texture2D" uid="uid://tnu2ol28ell6" path="res://scenes/enemies/fool/sprites/Run_34F.png" id="5_bmmjp"]
+[ext_resource type="Texture2D" uid="uid://col5v31j1i474" path="res://scenes/enemies/fool/sprites/Run_Back.png" id="6_3jjl3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mftcu"]
-atlas = ExtResource("3_qm32l")
+atlas = ExtResource("3_luxrt")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pts3l"]
-atlas = ExtResource("3_qm32l")
+atlas = ExtResource("3_luxrt")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5phj5"]
-atlas = ExtResource("3_qm32l")
+atlas = ExtResource("3_luxrt")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bxw5d"]
-atlas = ExtResource("3_qm32l")
+atlas = ExtResource("3_luxrt")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfs2h"]
-atlas = ExtResource("3_qm32l")
+atlas = ExtResource("3_luxrt")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2p2ir"]
-atlas = ExtResource("3_qm32l")
+atlas = ExtResource("3_luxrt")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lf2rn"]
-atlas = ExtResource("4_6w38w")
+atlas = ExtResource("4_7220x")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2of8"]
-atlas = ExtResource("4_6w38w")
+atlas = ExtResource("4_7220x")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7gx8g"]
-atlas = ExtResource("4_6w38w")
+atlas = ExtResource("4_7220x")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k1t3m"]
-atlas = ExtResource("4_6w38w")
+atlas = ExtResource("4_7220x")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ng2i"]
-atlas = ExtResource("4_6w38w")
+atlas = ExtResource("4_7220x")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgey3"]
-atlas = ExtResource("4_6w38w")
+atlas = ExtResource("4_7220x")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqnia"]
-atlas = ExtResource("4_qa8gm")
+atlas = ExtResource("5_bmmjp")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnov2"]
-atlas = ExtResource("4_qa8gm")
+atlas = ExtResource("5_bmmjp")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41epm"]
-atlas = ExtResource("4_qa8gm")
+atlas = ExtResource("5_bmmjp")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_viel0"]
-atlas = ExtResource("4_qa8gm")
+atlas = ExtResource("5_bmmjp")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_62gq7"]
-atlas = ExtResource("4_qa8gm")
+atlas = ExtResource("5_bmmjp")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ckclk"]
-atlas = ExtResource("4_qa8gm")
+atlas = ExtResource("5_bmmjp")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4eu10"]
-atlas = ExtResource("5_6w38w")
+atlas = ExtResource("6_3jjl3")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21jik"]
-atlas = ExtResource("5_6w38w")
+atlas = ExtResource("6_3jjl3")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tfvv1"]
-atlas = ExtResource("5_6w38w")
+atlas = ExtResource("6_3jjl3")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnm3a"]
-atlas = ExtResource("5_6w38w")
+atlas = ExtResource("6_3jjl3")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5n2l5"]
-atlas = ExtResource("5_6w38w")
+atlas = ExtResource("6_3jjl3")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lu3rt"]
-atlas = ExtResource("5_6w38w")
+atlas = ExtResource("6_3jjl3")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t7nay"]
@@ -199,16 +199,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7nay"]
-size = Vector2(31, 31)
+size = Vector2(30, 30)
 
-[node name="Fool" type="CharacterBody2D" groups=["enemies"]]
+[node name="Crazy" type="CharacterBody2D" groups=["enemies"]]
 z_index = 1
-material = ExtResource("1_oudoi")
+material = ExtResource("1_g006p")
 collision_layer = 20
 collision_mask = 33793
-script = ExtResource("1_t7nay")
+script = ExtResource("2_a212s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.9574775, 0.32868192, 0.35207617, 1)
 z_index = 1
 use_parent_material = true
 scale = Vector2(1.3, 1.3)
@@ -217,3 +218,5 @@ animation = &"move_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t7nay")
+
+[node name="CrazyTimer" type="Timer" parent="."]

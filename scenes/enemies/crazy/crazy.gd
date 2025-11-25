@@ -1,23 +1,30 @@
-## Enemy, which goes forward until it hits a wall/bomb/box,
-## then turns, preffering turning right and opposite _direction being the least priority.
-class_name Fool
+## Randomly changes direction over time or when hits solid object.
+class_name Crazy
 extends CharacterBody2D
 
 signal exploded
 
-const _BASE_SPEED := 60.0
+const _BASE_SPEED := 95.0
 # Since enemy collision shape a bit smaller, than distance between tiles, add additional
 # margin, so enemy doesn't rotate into the wall right next to it to move for a bit.
-const _COLLISION_MARGIN := 1
-
+const _COLLISION_MARGIN := 1.0
 
 var _direction := Vector2.RIGHT
 var _is_dead := false
 
 @onready var _animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var crazy_timer: Timer = $CrazyTimer
 
 
 func _ready() -> void:
+	crazy_timer.start(randi_range(2, 5))
+	crazy_timer.timeout.connect(func():
+		var directions = [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
+		directions.erase(_direction)
+		_direction = directions[randi() % directions.size()]
+		_update_animation()
+		crazy_timer.start(randi_range(2, 5))
+	)
 	_update_animation()
 
 func _physics_process(delta: float) -> void:
