@@ -3,14 +3,8 @@
 ## After hitting another object, turns, preffering turning right
 ## and opposite _direction being the least priority.
 class_name Clueless
-extends CharacterBody2D
+extends Enemy
 
-signal exploded
-
-const _BASE_SPEED := 70.0
-
-var _direction := Vector2.RIGHT
-var _is_dead := false
 var _raycast_direction_map: Dictionary[Vector2, ShapeCast2D] = {}
 var _can_turn := true
 # TODO Use Vector2i instead of Vector2, then don't need to use aprrox equal?
@@ -21,7 +15,6 @@ var _relative_vectors: Dictionary[Vector2, Array] = {
 	Vector2.RIGHT: [Vector2.DOWN, Vector2.UP],
 }
 
-@onready var _animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _shape_cast_down: ShapeCast2D = $ShapeCastDown
 @onready var _shape_cast_left: ShapeCast2D = $ShapeCastLeft
 @onready var _shape_cast_right: ShapeCast2D = $ShapeCastRight
@@ -30,6 +23,7 @@ var _relative_vectors: Dictionary[Vector2, Array] = {
 
 
 func _ready() -> void:
+	super ()
 	_turn_timer.timeout.connect(func():
 		_can_turn = true
 	)
@@ -40,13 +34,12 @@ func _ready() -> void:
 		Vector2.RIGHT: _shape_cast_right,
 		Vector2.UP: _shape_cast_up,
 	}
-	_update_animation()
 
 func _physics_process(delta: float) -> void:
 	if _is_dead:
 		return
 
-	velocity = _direction * _BASE_SPEED
+	velocity = _direction * _speed
 	var collision_info: KinematicCollision2D = move_and_collide(velocity * delta, false)
 	if collision_info:
 		var relative_right_vector = _relative_vectors[_direction][0]
@@ -79,7 +72,7 @@ func _physics_process(delta: float) -> void:
 			_turn_timer.start(0.25)
 
 			# Get 3 directions, except back one.
-			var possible_directions := [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]
+			var possible_directions := VectorUtils.VECTOR_LIST.duplicate()
 			if _direction.is_equal_approx(Vector2.RIGHT):
 				possible_directions.erase(Vector2.LEFT)
 			elif _direction.is_equal_approx(Vector2.LEFT):
@@ -103,30 +96,3 @@ func _physics_process(delta: float) -> void:
 				if picked_direction != _direction:
 					_direction = picked_direction
 					_update_animation()
-
-
-func explode() -> void:
-	if _is_dead:
-		return
-	SoundManager.play_sound(SoundManager.SoundType.HIT)
-	_is_dead = true
-	exploded.emit()
-	var tween = create_tween()
-	tween.tween_method(_set_percent, 1.0, 0.0, 0.85)
-	await tween.finished
-	queue_free()
-
-
-func _update_animation() -> void:
-	if _direction.is_equal_approx(Vector2.RIGHT):
-		_animated_sprite_2d.animation = "move_right"
-	elif _direction.is_equal_approx(Vector2.LEFT):
-		_animated_sprite_2d.animation = "move_left"
-	elif _direction.is_equal_approx(Vector2.UP):
-		_animated_sprite_2d.animation = "move_up"
-	elif _direction.is_equal_approx(Vector2.DOWN):
-		_animated_sprite_2d.animation = "move_down"
-	_animated_sprite_2d.play()
-
-func _set_percent(percentage: float) -> void:
-	material.set_shader_parameter('percentage', percentage)
