@@ -4,10 +4,24 @@ const _PERMANENT_BONUS_CHOOSER = preload("uid://bna7qyy6d8r7g")
 const _PLAYER_SCENE = preload("uid://ckogy8ldbtbum")
 const _LEVEL1_SCENE = preload("uid://bst1tonp0snoa")
 const _LEVEL2_SCENE = preload("uid://dw24fwv23rp6x")
+const _LEVEL3_SCENE = preload("uid://5mlwq4q8k5hb")
+const _LEVEL4_SCENE = preload("uid://baptwj4gkurkd")
+const _LEVEL5_SCENE = preload("uid://cl74pe7f4kl4n")
+const _LEVEL6_SCENE = preload("uid://bk2cyhryjm6f7")
+const _LEVEL7_SCENE = preload("uid://dhwhqbgmkm54")
+const _LEVEL8_SCENE = preload("uid://ch7x0x0rgi21y")
+const _LEVEL9_SCENE = preload("uid://ck8gw6o56y4dv")
 
 const _LEVEL_LIST: Array[PackedScene] = [
 	_LEVEL1_SCENE,
 	_LEVEL2_SCENE,
+	_LEVEL3_SCENE,
+	_LEVEL4_SCENE,
+	_LEVEL5_SCENE,
+	_LEVEL6_SCENE,
+	_LEVEL7_SCENE,
+	_LEVEL8_SCENE,
+	_LEVEL9_SCENE,
 ]
 
 var _current_level_list: Array[PackedScene]

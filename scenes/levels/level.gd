@@ -24,6 +24,7 @@ func _ready() -> void:
 
 	# All levels must have door scene for being able to complete the level.
 	_final_drop_table.append(_LEVEL_DOOR_SCENE)
+
 	if _final_drop_table.size() > destructible_boxes.size():
 		assert(false, "Drop table size cannot be larger than destructible boxes size.")
 

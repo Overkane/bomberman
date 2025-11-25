@@ -1,0 +1,278 @@
+[gd_scene load_steps=10 format=4 uid="uid://ch7x0x0rgi21y"]
+
+[ext_resource type="Script" uid="uid://2l06rbtfjq70" path="res://scenes/levels/level.gd" id="1_d35ek"]
+[ext_resource type="TileSet" uid="uid://01ordjws1gas" path="res://scenes/levels/tilesets/crypt/crypt.tres" id="5_komt3"]
+[ext_resource type="PackedScene" uid="uid://wcn0q7u74g13" path="res://scenes/destructible_box/destructible_box.tscn" id="6_5x7nc"]
+[ext_resource type="PackedScene" uid="uid://cc1ds67sphnrh" path="res://scenes/levels/player_spawner/player_spawner.tscn" id="6_lifsd"]
+[ext_resource type="Shader" uid="uid://bdnhudp63xi2s" path="res://shaders/dissolve.gdshader" id="9_hw1kd"]
+[ext_resource type="PackedScene" uid="uid://cdlsjnpwglvtf" path="res://scenes/enemies/ghosty/ghosty.tscn" id="12_lnxpb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nfihu"]
+frequency = 0.032
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lgguw"]
+noise = SubResource("FastNoiseLite_nfihu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xthml"]
+resource_local_to_scene = true
+shader = ExtResource("9_hw1kd")
+shader_parameter/percentage = 1.0
+shader_parameter/burn_texture = SubResource("NoiseTexture2D_lgguw")
+shader_parameter/layer_1 = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/size_1 = 0.05
+shader_parameter/layer_2 = Color(1, 0, 0, 1)
+shader_parameter/size_2 = 0.05
+shader_parameter/layer_3 = Color(1, 0.5, 0, 1)
+shader_parameter/size_3 = 0.05
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_d35ek")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAEAIwAEAAAAAAABAAIAIwAEAAAAAAABAAMAIwAFAAAAAAABAAQAIwAHAAAAAAABAAUAIwAFAAAAAAABAAYAIwAFAAAAAAABAAcAIwAGAAAAAAABAAgAIwAGAAAAAAABAAkAIwAGAAAAAAABAAoAIwAEAAAAAAACAAEAIwAEAAAAAAADAAEAIwAGAAAAAAAEAAEAIwAHAAAAAAAFAAEAIwAHAAAAAAAGAAEAIwAGAAAAAAABAAsAIwAFAAAAAAABAAwAIwAFAAAAAAAGAAwAIwAGAAAAAAAFAAwAIwAHAAAAAAAEAAwAIwAGAAAAAAADAAwAIwAHAAAAAAACAAwAIwAHAAAAAAAGAAsAIwAGAAAAAAAGAAgAIwAEAAAAAAAGAAUAIwAHAAAAAAAGAAIAIwAEAAAAAAAHAAgAIwAFAAAAAAAIAAgAIwAEAAAAAAAJAAgAIwAEAAAAAAAKAAgAIwAEAAAAAAALAAgAIwAGAAAAAAAMAAgAIwAFAAAAAAANAAgAIwAEAAAAAAAOAAgAIwAFAAAAAAAHAAUAIwAGAAAAAAAIAAUAIwAGAAAAAAAJAAUAIwAHAAAAAAAKAAUAIwAFAAAAAAALAAUAIwAGAAAAAAAMAAUAIwAFAAAAAAANAAUAIwAHAAAAAAAOAAUAIwAFAAAAAAAPAAUAIwAGAAAAAAAHAAsAIwAGAAAAAAAIAAsAIwAGAAAAAAAJAAsAIwAFAAAAAAAKAAsAIwAGAAAAAAALAAsAIwAEAAAAAAAMAAsAIwAFAAAAAAANAAsAIwAEAAAAAAAOAAsAIwAHAAAAAAAPAAsAIwAGAAAAAAAPAAgAIwAEAAAAAAAHAAIAIwAEAAAAAAAIAAIAIwAGAAAAAAAJAAIAIwAEAAAAAAAKAAIAIwAGAAAAAAALAAIAIwAGAAAAAAAMAAIAIwAHAAAAAAANAAIAIwAHAAAAAAAOAAIAIwAEAAAAAAAPAAIAIwAFAAAAAAAQAAsAIwAEAAAAAAAQAAwAIwAHAAAAAAARAAwAIwAFAAAAAAASAAwAIwAHAAAAAAATAAwAIwAGAAAAAAAUAAwAIwAHAAAAAAAQAAIAIwAEAAAAAAAQAAEAIwAHAAAAAAARAAEAIwAEAAAAAAASAAEAIwAFAAAAAAATAAEAIwAEAAAAAAAUAAEAIwAFAAAAAAAVAAEAIwAHAAAAAAAVAAIAIwAEAAAAAAAVAAMAIwAHAAAAAAAVAAQAIwAHAAAAAAAVAAUAIwAGAAAAAAAVAAYAIwAFAAAAAAAVAAcAIwAEAAAAAAAVAAgAIwAGAAAAAAAVAAkAIwAFAAAAAAAVAAoAIwAGAAAAAAAVAAsAIwAGAAAAAAAVAAwAIwAFAAAAAAAQAAUAIwAGAAAAAAAQAAgAIwAGAAAAAAA=")
+tile_set = ExtResource("5_komt3")
+metadata/_edit_lock_ = true
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("6_lifsd")]
+position = Vector2(122, 218)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(385, 213)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Ghostly" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(560, 78)
+
+[node name="Ghostly2" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(561, 368)
+_initial_direction_id = 1
+
+[node name="Ghostly3" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(656, 368)
+_initial_direction_id = 1
+
+[node name="Ghostly4" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(656, 78)
+_initial_direction_id = 3
+
+[node name="Ghostly5" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(656, 144)
+_initial_direction_id = 3
+
+[node name="Ghostly7" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(560, 269)
+_initial_direction_id = 1
+
+[node name="Ghostly8" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(656, 238)
+_initial_direction_id = 1
+
+[node name="Ghostly10" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(656, 207)
+_initial_direction_id = 3
+
+[node name="Ghostly9" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(656, 302)
+_initial_direction_id = 1
+
+[node name="Ghostly11" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(626, 368)
+_initial_direction_id = 1
+
+[node name="Ghostly12" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(626, 78)
+_initial_direction_id = 3
+
+[node name="Ghostly13" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(626, 144)
+_initial_direction_id = 3
+
+[node name="Ghostly14" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(626, 238)
+_initial_direction_id = 1
+
+[node name="Ghostly15" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(626, 207)
+_initial_direction_id = 3
+
+[node name="Ghostly16" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(626, 302)
+_initial_direction_id = 1
+
+[node name="Ghostly17" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(603, 368)
+_initial_direction_id = 1
+
+[node name="Ghostly18" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(603, 78)
+_initial_direction_id = 3
+
+[node name="Ghostly19" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(603, 144)
+_initial_direction_id = 3
+
+[node name="Ghostly20" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(603, 238)
+_initial_direction_id = 1
+
+[node name="Ghostly21" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(603, 207)
+_initial_direction_id = 3
+
+[node name="Ghostly22" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(603, 302)
+_initial_direction_id = 1
+
+[node name="Ghostly23" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(582, 368)
+_initial_direction_id = 1
+
+[node name="Ghostly24" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(582, 78)
+_initial_direction_id = 3
+
+[node name="Ghostly25" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(582, 144)
+_initial_direction_id = 3
+
+[node name="Ghostly26" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(582, 238)
+_initial_direction_id = 1
+
+[node name="Ghostly27" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(582, 207)
+_initial_direction_id = 3
+
+[node name="Ghostly28" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(582, 302)
+_initial_direction_id = 1
+
+[node name="Ghostly6" parent="." instance=ExtResource("12_lnxpb")]
+material = SubResource("ShaderMaterial_xthml")
+position = Vector2(561, 176)
+
+[node name="DestructibleBox" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(240, 112)
+
+[node name="DestructibleBox2" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(272, 144)
+
+[node name="DestructibleBox3" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(304, 117)
+
+[node name="DestructibleBox4" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(337, 143)
+
+[node name="DestructibleBox5" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(370, 117)
+
+[node name="DestructibleBox6" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(401, 142)
+
+[node name="DestructibleBox7" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(433, 116)
+
+[node name="DestructibleBox8" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(467, 141)
+
+[node name="DestructibleBox9" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(495, 118)
+
+[node name="DestructibleBox19" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(240, 207)
+
+[node name="DestructibleBox20" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(272, 239)
+
+[node name="DestructibleBox21" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(304, 212)
+
+[node name="DestructibleBox22" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(337, 238)
+
+[node name="DestructibleBox23" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(370, 212)
+
+[node name="DestructibleBox24" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(401, 237)
+
+[node name="DestructibleBox25" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(433, 211)
+
+[node name="DestructibleBox26" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(467, 236)
+
+[node name="DestructibleBox27" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(495, 213)
+
+[node name="DestructibleBox10" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(240, 301)
+
+[node name="DestructibleBox28" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(209, 333)
+
+[node name="DestructibleBox29" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(209, 236)
+
+[node name="DestructibleBox30" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(209, 141)
+
+[node name="DestructibleBox31" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(529, 143)
+
+[node name="DestructibleBox32" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(528, 236)
+
+[node name="DestructibleBox33" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(528, 331)
+
+[node name="DestructibleBox11" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(272, 333)
+
+[node name="DestructibleBox12" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(304, 306)
+
+[node name="DestructibleBox13" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(337, 332)
+
+[node name="DestructibleBox14" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(370, 306)
+
+[node name="DestructibleBox15" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(401, 331)
+
+[node name="DestructibleBox16" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(433, 305)
+
+[node name="DestructibleBox17" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(467, 330)
+
+[node name="DestructibleBox18" parent="." instance=ExtResource("6_5x7nc")]
+position = Vector2(495, 307)
